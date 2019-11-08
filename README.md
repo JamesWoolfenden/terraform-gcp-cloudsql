@@ -15,12 +15,14 @@ You need to have enabled the API's for this to work if you haven't used this par
 Add **module.cloudsql.tf** to your code:-
 
 ```terraform
-module "cloudsql" {
+module cloudsql {
   source       = "JamesWoolfenden/cloudsql/gcp"
   version      = "0.1.13"
   name         = var.name
   project      = var.project
   network_name = var.network_name
+  database     = var.database
+  users        = var.users
 }
 ```
 

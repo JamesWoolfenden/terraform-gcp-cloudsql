@@ -1,4 +1,4 @@
 network_name = "vpc-network"
 project      = "examplea"
-name         = "name"
+name         = "examplea"
 tier         = "db-f1-micro"

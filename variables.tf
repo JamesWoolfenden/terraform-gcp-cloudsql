@@ -1,22 +1,27 @@
 
 variable "network_name" {
-  type = string
+  description = "The name of the VCP to provision this in to"
+  type        = string
 }
 
 variable "project" {
-  type = string
+  description = "The name of the GCP project"
+  type        = string
 }
 
 variable "name" {
-  type = string
+  description = "The name of the database instance"
+  type        = string
 }
 
 variable "tier" {
-  type=string
-  default="db-f1-micro"
+  description = "The size of the Databse instance"
+  type        = string
+  default     = "db-f1-micro"
 }
 
 variable "database_version" {
-  type   = string
-  default= "POSTGRES_9_6"
+  description = "The Database type and version"
+  type        = string
+  default     = "POSTGRES_9_6"
 }

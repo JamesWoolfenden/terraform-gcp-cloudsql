@@ -26,13 +26,14 @@ module "cloudsql" {
 
 You can also create databases with this module and the variable database:
 
-``
+```terraform
 variable "database" {
     type=list(object({
         name = string
     }))
     default=[]
 }
+```
 
 Setting database to
 
@@ -57,6 +58,8 @@ resource "google_sql_database" "database" {
 }
 ```
 
+The "Users" variable and resource follows the same pattern.
+
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
 
@@ -68,6 +71,7 @@ resource "google_sql_database" "database" {
 | network\_name | The name of the VCP to provision this in to | string | n/a | yes |
 | project | The name of the GCP project | string | n/a | yes |
 | tier | The size of the Databse instance | string | `"db-f1-micro"` | no |
+| users | A list of user that belong to a database instance | object | `[]` | no |
 
 ## Outputs
 

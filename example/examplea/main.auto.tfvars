@@ -8,3 +8,7 @@ database = [{
   {
     name = "your-database"
 }]
+users = [{
+  name     = "jimbo"
+  password = "totallyvisible"
+}]

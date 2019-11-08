@@ -1,7 +1,7 @@
-network_name = "vpc-network"
+network_name = "examplea"
 project      = "examplea"
-name         = "name"
-tier         = "db-f1-micro"
+name         = "examplea"
+tier         = "db-custom-1-3840"
 database = [{
   name = "my-database"
   },

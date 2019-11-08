@@ -66,11 +66,10 @@ The "Users" variable and resource follows the same pattern.
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | database | A list of objects that describes if any databases to be created | object | `[]` | no |
-| database\_version | The Database type and version | string | `"POSTGRES_9_6"` | no |
+| instance |  | map | `{ "database_version": "POSTGRES_11", "region": "us-central1", "tier": "db-custom-1-3840" }` | no |
 | name | The name of the database instance | string | n/a | yes |
 | network\_name | The name of the VCP to provision this in to | string | n/a | yes |
 | project | The name of the GCP project | string | n/a | yes |
-| tier | The size of the Databse instance | string | `"db-f1-micro"` | no |
 | users | A list of user that belong to a database instance | object | `[]` | no |
 
 ## Outputs

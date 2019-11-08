@@ -14,18 +14,6 @@ variable "name" {
   type        = string
 }
 
-variable "tier" {
-  description = "The size of the Databse instance"
-  type        = string
-  default     = "db-f1-micro"
-}
-
-variable "database_version" {
-  description = "The Database type and version"
-  type        = string
-  default     = "POSTGRES_9_6"
-}
-
 variable "database" {
   description = "A list of objects that describes if any databases to be created"
   type = list(object({
@@ -41,4 +29,13 @@ variable "users" {
     password = string
   }))
   default = []
+}
+
+variable "instance" {
+  type = map
+  default = {
+    tier             = "db-custom-1-3840"
+    database_version = "POSTGRES_11"
+    region           = "us-central1"
+  }
 }

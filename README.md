@@ -6,7 +6,7 @@ The beginnings of a cloudsql module for GCP, currently targeting a private endpo
 
 ## Usage
 
-You might/will have to enabe the API's for this to work if you havent used this part of GCP before:
+You need to have enabled the API's for this to work if you haven't used this part of GCP before:
 
 [servicenetworking.googleapis.com](https://console.developers.google.com/apis/api/servicenetworking.googleapis.com/overview)
 

@@ -24,11 +24,45 @@ module "cloudsql" {
 }
 ```
 
+You can also create databases with this module and the variable database:
+
+``
+variable "database" {
+    type=list(object({
+        name = string
+    }))
+    default=[]
+}
+
+Setting database to
+
+```terraform
+    database=[{
+        name= "my-database"
+    },
+    {
+        name= "your-database"
+    }]
+```
+
+Will create 2 databases.
+
+You can then optionally create resource based on that object being populated, or not.
+
+```terraform
+resource "google_sql_database" "database" {
+  count    = length(var.database)
+  name     = var.database[count.index]["name"]
+  instance = google_sql_database_instance.instance.name
+}
+```
+
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
+| database | A list of objects that describes if any databases to be created | object | `[]` | no |
 | database\_version | The Database type and version | string | `"POSTGRES_9_6"` | no |
 | name | The name of the database instance | string | n/a | yes |
 | network\_name | The name of the VCP to provision this in to | string | n/a | yes |

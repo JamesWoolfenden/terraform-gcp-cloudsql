@@ -3,4 +3,5 @@ module cloudsql {
   name         = var.name
   project      = var.project
   network_name = var.network_name
+  database     = var.database
 }

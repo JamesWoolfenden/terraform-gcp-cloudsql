@@ -5,5 +5,4 @@ module cloudsql {
   network_name = var.network_name
   database     = var.database
   users        = var.users
-
 }

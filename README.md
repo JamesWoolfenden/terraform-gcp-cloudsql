@@ -63,25 +63,32 @@ resource "google_sql_database" "database" {
 The "Users" variable and resource follows the same pattern.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Providers
+
+| Name | Version |
+|------|---------|
+| google | n/a |
+| google-beta | n/a |
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| database | A list of objects that describes if any databases to be created | object | `[]` | no |
-| instance |  | map | `{ "database_version": "POSTGRES_11", "region": "us-central1", "tier": "db-custom-1-3840" }` | no |
-| name | The name of the database instance | string | n/a | yes |
-| network\_name | The name of the VCP to provision this in to | string | n/a | yes |
-| project | The name of the GCP project | string | n/a | yes |
-| users | A list of user that belong to a database instance | object | `[]` | no |
+|------|-------------|------|---------|:-----:|
+| database | A list of objects that describes if any databases to be created | <pre>list(object({<br>    name = string<br>  }))<br></pre> | `[]` | no |
+| instance | n/a | `map` | <pre>{<br>  "database_version": "POSTGRES_11",<br>  "region": "us-central1",<br>  "tier": "db-custom-1-3840"<br>}<br></pre> | no |
+| name | The name of the database instance | `string` | n/a | yes |
+| network\_name | The name of the VCP to provision this in to | `string` | n/a | yes |
+| project | The name of the GCP project | `string` | n/a | yes |
+| users | A list of user that belong to a database instance | <pre>list(object({<br>    name     = string<br>    password = string<br>  }))<br></pre> | `[]` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| instance |  |
-| network | Required for to publish Modules |
-| private\_ip\_address |  |
-| vpc\_connection |  |
+| instance | n/a |
+| network | n/a |
+| private\_ip\_address | n/a |
+| vpc\_connection | n/a |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 

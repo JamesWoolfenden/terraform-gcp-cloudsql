@@ -98,6 +98,8 @@ The "Users" variable and resource follows the same pattern.
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
+## Information
+
 ## Related Projects
 
 Check out these related projects.

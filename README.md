@@ -1,5 +1,3 @@
-[![Slalom][logo]](https://slalom.com)
-
 # terraform-gcp-cloudsql [![Build Status](https://api.travis-ci.com/JamesWoolfenden/terraform-gcp-cloudsql.svg?branch=master)](https://travis-ci.com/JamesWoolfenden/terraform-gcp-cloudsql) [![Latest Release](https://img.shields.io/github/release/JamesWoolfenden/terraform-gcp-cloudsql.svg)](https://github.com/JamesWoolfenden/terraform-gcp-cloudsql/releases/latest)
 
 The beginnings of a cloudsql module for GCP, currently targeting a private endpoint.
@@ -63,32 +61,33 @@ resource "google_sql_database" "database" {
 The "Users" variable and resource follows the same pattern.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
 ## Providers
 
-| Name | Version |
-|------|---------|
-| google | n/a |
-| google-beta | n/a |
+| Name        | Version |
+| ----------- | ------- |
+| google      | n/a     |
+| google-beta | n/a     |
 
 ## Inputs
 
-| Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
-| database | A list of objects that describes if any databases to be created | <pre>list(object({<br>    name = string<br>  }))<br></pre> | `[]` | no |
-| instance | n/a | `map` | <pre>{<br>  "database_version": "POSTGRES_11",<br>  "region": "us-central1",<br>  "tier": "db-custom-1-3840"<br>}<br></pre> | no |
-| name | The name of the database instance | `string` | n/a | yes |
-| network\_name | The name of the VCP to provision this in to | `string` | n/a | yes |
-| project | The name of the GCP project | `string` | n/a | yes |
-| users | A list of user that belong to a database instance | <pre>list(object({<br>    name     = string<br>    password = string<br>  }))<br></pre> | `[]` | no |
+| Name         | Description                                                     | Type                                                                         | Default                                                                                                                  | Required |
+| ------------ | --------------------------------------------------------------- | ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ | :------: |
+| database     | A list of objects that describes if any databases to be created | <pre>list(object({<br> name = string<br> }))<br></pre>                       | `[]`                                                                                                                     |    no    |
+| instance     | n/a                                                             | `map`                                                                        | <pre>{<br> "database_version": "POSTGRES_11",<br> "region": "us-central1",<br> "tier": "db-custom-1-3840"<br>}<br></pre> |    no    |
+| name         | The name of the database instance                               | `string`                                                                     | n/a                                                                                                                      |   yes    |
+| network_name | The name of the VCP to provision this in to                     | `string`                                                                     | n/a                                                                                                                      |   yes    |
+| project      | The name of the GCP project                                     | `string`                                                                     | n/a                                                                                                                      |   yes    |
+| users        | A list of user that belong to a database instance               | <pre>list(object({<br> name = string<br> password = string<br> }))<br></pre> | `[]`                                                                                                                     |    no    |
 
 ## Outputs
 
-| Name | Description |
-|------|-------------|
-| instance | n/a |
-| network | n/a |
-| private\_ip\_address | n/a |
-| vpc\_connection | n/a |
+| Name               | Description |
+| ------------------ | ----------- |
+| instance           | n/a         |
+| network            | n/a         |
+| private_ip_address | n/a         |
+| vpc_connection     | n/a         |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
@@ -146,8 +145,8 @@ under the License.
 [logo]: https://gist.githubusercontent.com/JamesWoolfenden/5c457434351e9fe732ca22b78fdd7d5e/raw/15933294ae2b00f5dba6557d2be88f4b4da21201/slalom-logo.png
 [website]: https://slalom.com
 [github]: https://github.com/jameswoolfenden
-[linkedin]: https://www.linkedin.com/company/slalom-consulting/
-[twitter]: https://twitter.com/Slalom
+[linkedin]: https://www.linkedin.com/in/jameswoolfenden/
+[twitter]: https://twitter.com/JimWoolfenden
 [share_twitter]: https://twitter.com/intent/tweet/?text=terraform-gcp-cloudsql&url=https://github.com/jameswoolfenden/terraform-gcp-cloudsql
 [share_linkedin]: https://www.linkedin.com/shareArticle?mini=true&title=terraform-gcp-cloudsql&url=https://github.com/jameswoolfenden/terraform-gcp-cloudsql
 [share_reddit]: https://reddit.com/submit/?url=https://github.com/jameswoolfenden/terraform-gcp-cloudsql

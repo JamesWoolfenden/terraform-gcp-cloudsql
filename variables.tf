@@ -39,3 +39,9 @@ variable "instance" {
     region           = "us-central1"
   }
 }
+
+variable "require_ssl" {
+  description = "Require SSL connections or not."
+  type        = bool
+  default     = true
+}

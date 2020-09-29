@@ -1,4 +1,9 @@
-# terraform-gcp-cloudsql [![Build Status](https://api.travis-ci.com/JamesWoolfenden/terraform-gcp-cloudsql.svg?branch=master)](https://travis-ci.com/JamesWoolfenden/terraform-gcp-cloudsql) [![Latest Release](https://img.shields.io/github/release/JamesWoolfenden/terraform-gcp-cloudsql.svg)](https://github.com/JamesWoolfenden/terraform-gcp-cloudsql/releases/latest)
+# terraform-gcp-cloudsql
+
+[![Build Status](https://github.com/JamesWoolfenden/terraform-gcp-cloudsql/workflows/Verify%20and%20Bump/badge.svg?branch=master)](https://github.com/JamesWoolfenden/terraform-gcp-cloudsql)
+[![Latest Release](https://img.shields.io/github/release/JamesWoolfenden/terraform-gcp-cloudsql.svg)](https://github.com/JamesWoolfenden/terraform-gcp-cloudsql/releases/latest)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
+[![pre-commit](https://img.shields.io/badge/checkov-verified-brightgreen)](https://www.checkov.io/)
 
 The beginnings of a cloudsql module for GCP, currently targeting a private endpoint.
 
@@ -78,6 +83,7 @@ The "Users" variable and resource follows the same pattern.
 | name         | The name of the database instance                               | `string`                                                                     | n/a                                                                                                                      |   yes    |
 | network_name | The name of the VCP to provision this in to                     | `string`                                                                     | n/a                                                                                                                      |   yes    |
 | project      | The name of the GCP project                                     | `string`                                                                     | n/a                                                                                                                      |   yes    |
+| require\_ssl | Require SSL connections or not. | `bool` | `true` | no |
 | users        | A list of user that belong to a database instance               | <pre>list(object({<br> name = string<br> password = string<br> }))<br></pre> | `[]`                                                                                                                     |    no    |
 
 ## Outputs
@@ -90,6 +96,8 @@ The "Users" variable and resource follows the same pattern.
 | vpc_connection     | n/a         |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
+## Information
 
 ## Related Projects
 
@@ -111,7 +119,7 @@ Please use the [issue tracker](https://github.com/jameswoolfenden/terraform-gcp-
 
 ## Copyrights
 
-Copyright © 2019-2019 [Slalom, LLC](https://slalom.com)
+Copyright © 2019-2020 James Woolfenden
 
 ## License
 
@@ -142,8 +150,6 @@ under the License.
 
 [jameswoolfenden_homepage]: https://github.com/jameswoolfenden
 [jameswoolfenden_avatar]: https://github.com/jameswoolfenden.png?size=150
-[logo]: https://gist.githubusercontent.com/JamesWoolfenden/5c457434351e9fe732ca22b78fdd7d5e/raw/15933294ae2b00f5dba6557d2be88f4b4da21201/slalom-logo.png
-[website]: https://slalom.com
 [github]: https://github.com/jameswoolfenden
 [linkedin]: https://www.linkedin.com/in/jameswoolfenden/
 [twitter]: https://twitter.com/JimWoolfenden

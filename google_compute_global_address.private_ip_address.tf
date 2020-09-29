@@ -1,5 +1,5 @@
 resource "google_compute_global_address" "private_ip_address" {
-  provider      = "google-beta"
+  provider      = google-beta
   project       = var.project
   name          = var.name
   purpose       = "VPC_PEERING"

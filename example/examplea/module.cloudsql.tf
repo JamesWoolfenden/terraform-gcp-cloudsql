@@ -1,4 +1,4 @@
-module cloudsql {
+module "cloudsql" {
   source       = "../../"
   name         = var.name
   project      = var.project

@@ -19,3 +19,4 @@ lambda
 *.orig
 *.gz
 *.info
+.terraform.lock.hcl

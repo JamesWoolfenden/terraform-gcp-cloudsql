@@ -77,12 +77,27 @@ No requirements.
 | google | n/a |
 | google-beta | n/a |
 
+## Modules
+
+No Modules.
+
+## Resources
+
+| Name |
+|------|
+| [google-beta_google_compute_global_address](https://registry.terraform.io/providers/hashicorp/google-beta/latest/docs/resources/google_compute_global_address) |
+| [google-beta_google_compute_network](https://registry.terraform.io/providers/hashicorp/google-beta/latest/docs/data-sources/google_compute_network) |
+| [google-beta_google_service_networking_connection](https://registry.terraform.io/providers/hashicorp/google-beta/latest/docs/resources/google_service_networking_connection) |
+| [google-beta_google_sql_database_instance](https://registry.terraform.io/providers/hashicorp/google-beta/latest/docs/resources/google_sql_database_instance) |
+| [google_sql_database](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database) |
+| [google_sql_user](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_user) |
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | database | A list of objects that describes if any databases to be created | <pre>list(object({<br>    name = string<br>  }))</pre> | `[]` | no |
-| instance | n/a | `map` | <pre>{<br>  "database_version": "POSTGRES_11",<br>  "region": "us-central1",<br>  "tier": "db-custom-1-3840"<br>}</pre> | no |
+| instance | n/a | `map(any)` | <pre>{<br>  "database_version": "POSTGRES_11",<br>  "region": "us-central1",<br>  "tier": "db-custom-1-3840"<br>}</pre> | no |
 | name | The name of the database instance | `string` | n/a | yes |
 | network\_name | The name of the VCP to provision this in to | `string` | n/a | yes |
 | project | The name of the GCP project | `string` | n/a | yes |
@@ -97,7 +112,6 @@ No requirements.
 | network | n/a |
 | private\_ip\_address | n/a |
 | vpc\_connection | n/a |
-
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Information

@@ -1,4 +1,4 @@
-resource google_sql_user users {
+resource "google_sql_user" "users" {
   count    = length(var.users)
   project  = var.project
   name     = var.users[count.index]["name"]

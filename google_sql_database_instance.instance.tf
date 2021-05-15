@@ -17,8 +17,8 @@ resource "google_sql_database_instance" "instance" {
       require_ssl     = var.require_ssl
     }
     maintenance_window {
-      day  = null
-      hour = null
+      day  = var.mw_day
+      hour = var.mw_hour
     }
     backup_configuration {
       enabled    = true
@@ -27,3 +27,6 @@ resource "google_sql_database_instance" "instance" {
   }
 
 }
+
+variable "mw_day" { default = 1 }
+variable "mw_hour" { default = 12 }

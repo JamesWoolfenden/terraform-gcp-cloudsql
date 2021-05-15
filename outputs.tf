@@ -3,7 +3,8 @@ output "network" {
 }
 
 output "instance" {
-  value = google_sql_database_instance.instance
+  sensitive = true
+  value     = google_sql_database_instance.instance
 }
 
 output "vpc_connection" {

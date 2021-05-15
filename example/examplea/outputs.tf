@@ -3,7 +3,8 @@ output "network" {
 }
 
 output "instance" {
-  value = module.cloudsql.instance
+  value     = module.cloudsql.instance
+  sensitive = true
 }
 
 output "vpc_connection" {

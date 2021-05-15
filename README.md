@@ -74,44 +74,43 @@ No requirements.
 
 | Name | Version |
 |------|---------|
-| google | n/a |
-| google-beta | n/a |
+| <a name="provider_google"></a> [google](#provider\_google) | n/a |
 
 ## Modules
 
-No Modules.
+No modules.
 
 ## Resources
 
-| Name |
-|------|
-| [google-beta_google_compute_global_address](https://registry.terraform.io/providers/hashicorp/google-beta/latest/docs/resources/google_compute_global_address) |
-| [google-beta_google_compute_network](https://registry.terraform.io/providers/hashicorp/google-beta/latest/docs/data-sources/google_compute_network) |
-| [google-beta_google_service_networking_connection](https://registry.terraform.io/providers/hashicorp/google-beta/latest/docs/resources/google_service_networking_connection) |
-| [google-beta_google_sql_database_instance](https://registry.terraform.io/providers/hashicorp/google-beta/latest/docs/resources/google_sql_database_instance) |
-| [google_sql_database](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database) |
-| [google_sql_user](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_user) |
+| Name | Type |
+|------|------|
+| [google_compute_global_address.private_ip_address](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_global_address) | resource |
+| [google_service_networking_connection.private_vpc_connection](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/service_networking_connection) | resource |
+| [google_sql_database.database](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database) | resource |
+| [google_sql_database_instance.instance](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance) | resource |
+| [google_sql_user.users](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_user) | resource |
+| [google_compute_network.private_network](https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/compute_network) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| database | A list of objects that describes if any databases to be created | <pre>list(object({<br>    name = string<br>  }))</pre> | `[]` | no |
-| instance | n/a | `map(any)` | <pre>{<br>  "database_version": "POSTGRES_11",<br>  "region": "us-central1",<br>  "tier": "db-custom-1-3840"<br>}</pre> | no |
-| name | The name of the database instance | `string` | n/a | yes |
-| network\_name | The name of the VCP to provision this in to | `string` | n/a | yes |
-| project | The name of the GCP project | `string` | n/a | yes |
-| require\_ssl | Require SSL connections or not. | `bool` | `true` | no |
-| users | A list of user that belong to a database instance | <pre>list(object({<br>    name     = string<br>    password = string<br>  }))</pre> | `[]` | no |
+| <a name="input_database"></a> [database](#input\_database) | A list of objects that describes if any databases to be created | <pre>list(object({<br>    name = string<br>  }))</pre> | `[]` | no |
+| <a name="input_instance"></a> [instance](#input\_instance) | n/a | `map(any)` | <pre>{<br>  "database_version": "POSTGRES_11",<br>  "region": "us-central1",<br>  "tier": "db-custom-1-3840"<br>}</pre> | no |
+| <a name="input_name"></a> [name](#input\_name) | The name of the database instance | `string` | n/a | yes |
+| <a name="input_network_name"></a> [network\_name](#input\_network\_name) | The name of the VCP to provision this in to | `string` | n/a | yes |
+| <a name="input_project"></a> [project](#input\_project) | The name of the GCP project | `string` | n/a | yes |
+| <a name="input_require_ssl"></a> [require\_ssl](#input\_require\_ssl) | Require SSL connections or not. | `bool` | `true` | no |
+| <a name="input_users"></a> [users](#input\_users) | A list of user that belong to a database instance | <pre>list(object({<br>    name     = string<br>    password = string<br>  }))</pre> | `[]` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| instance | n/a |
-| network | n/a |
-| private\_ip\_address | n/a |
-| vpc\_connection | n/a |
+| <a name="output_instance"></a> [instance](#output\_instance) | n/a |
+| <a name="output_network"></a> [network](#output\_network) | n/a |
+| <a name="output_private_ip_address"></a> [private\_ip\_address](#output\_private\_ip\_address) | n/a |
+| <a name="output_vpc_connection"></a> [vpc\_connection](#output\_vpc\_connection) | n/a |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Information

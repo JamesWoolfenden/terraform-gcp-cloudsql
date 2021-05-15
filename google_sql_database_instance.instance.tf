@@ -1,8 +1,5 @@
 resource "google_sql_database_instance" "instance" {
-
   #checkov:skip=CKV_GCP_6: "Ensure all Cloud SQL database instance requires all incoming connections to use SSL"
-
-  provider         = google-beta
   database_version = var.instance["database_version"]
   name             = var.name
   region           = var.instance["region"]

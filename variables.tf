@@ -35,7 +35,7 @@ variable "instance" {
   type = map(any)
   default = {
     tier             = "db-custom-1-3840"
-    database_version = "POSTGRES_11"
+    database_version = "POSTGRES_14"
     region           = "us-central1"
   }
 }

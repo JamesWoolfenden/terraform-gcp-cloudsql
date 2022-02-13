@@ -96,7 +96,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_database"></a> [database](#input\_database) | A list of objects that describes if any databases to be created | <pre>list(object({<br>    name = string<br>  }))</pre> | `[]` | no |
-| <a name="input_instance"></a> [instance](#input\_instance) | n/a | `map(any)` | <pre>{<br>  "database_version": "POSTGRES_11",<br>  "region": "us-central1",<br>  "tier": "db-custom-1-3840"<br>}</pre> | no |
+| <a name="input_instance"></a> [instance](#input\_instance) | n/a | `map(any)` | <pre>{<br>  "database_version": "POSTGRES_14",<br>  "region": "us-central1",<br>  "tier": "db-custom-1-3840"<br>}</pre> | no |
 | <a name="input_mw_day"></a> [mw\_day](#input\_mw\_day) | n/a | `number` | `1` | no |
 | <a name="input_mw_hour"></a> [mw\_hour](#input\_mw\_hour) | n/a | `number` | `12` | no |
 | <a name="input_name"></a> [name](#input\_name) | The name of the database instance | `string` | n/a | yes |

@@ -1,5 +1,5 @@
 network_name = "examplea"
-project      = "examplea"
+project      = "pike"
 name         = "examplea"
 tier         = "db-custom-1-3840"
 database = [{

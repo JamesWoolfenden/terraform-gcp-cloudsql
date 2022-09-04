@@ -1,6 +1,6 @@
-network_name = "examplea"
-project      = "pike"
-name         = "examplea"
+network_name = "pike"
+project      = "pike-361314"
+name         = "pike"
 tier         = "db-custom-1-3840"
 database = [{
   name = "my-database"

@@ -127,7 +127,29 @@ resource "google_project_iam_custom_role" "terraformXVlBzgba" {
   title       = "terraformXVlBzgba"
   description = "A user with least privileges"
   permissions = [
-    "compute.networks.get"
+    "cloudsql.databases.create",
+    "cloudsql.databases.delete",
+    "cloudsql.databases.get",
+    "cloudsql.databases.update",
+    "cloudsql.instances.create",
+    "cloudsql.instances.delete",
+    "cloudsql.instances.get",
+    "cloudsql.instances.update",
+    "cloudsql.users.create",
+    "cloudsql.users.delete",
+    "cloudsql.users.list",
+    "cloudsql.users.update",
+    "compute.globalAddresses.create",
+    "compute.globalAddresses.createInternal",
+    "compute.globalAddresses.delete",
+    "compute.globalAddresses.deleteInternal",
+    "compute.globalAddresses.get",
+    "compute.networks.get",
+    "compute.networks.removePeering",
+    "compute.networks.use",
+    "resourcemanager.projects.get",
+    "servicenetworking.services.addPeering",
+    "servicenetworking.services.get"
   ]
 }
 
@@ -185,11 +207,3 @@ under the License.
 
 [jameswoolfenden_homepage]: https://github.com/jameswoolfenden
 [jameswoolfenden_avatar]: https://github.com/jameswoolfenden.png?size=150
-[github]: https://github.com/jameswoolfenden
-[linkedin]: https://www.linkedin.com/in/jameswoolfenden/
-[twitter]: https://twitter.com/JimWoolfenden
-[share_twitter]: https://twitter.com/intent/tweet/?text=terraform-gcp-cloudsql&url=https://github.com/jameswoolfenden/terraform-gcp-cloudsql
-[share_linkedin]: https://www.linkedin.com/shareArticle?mini=true&title=terraform-gcp-cloudsql&url=https://github.com/jameswoolfenden/terraform-gcp-cloudsql
-[share_reddit]: https://reddit.com/submit/?url=https://github.com/jameswoolfenden/terraform-gcp-cloudsql
-[share_facebook]: https://facebook.com/sharer/sharer.php?u=https://github.com/jameswoolfenden/terraform-gcp-cloudsql
-[share_email]: mailto:?subject=terraform-gcp-cloudsql&body=https://github.com/jameswoolfenden/terraform-gcp-cloudsql

@@ -24,6 +24,22 @@ resource "google_sql_database_instance" "instance" {
       enabled    = true
       start_time = "23:59"
     }
+    database_flags {
+      name  = "log_lock_waits"
+      value = "on"
+    }
+    database_flags {
+      name  = "log_disconnections"
+      value = "on"
+    }
+    database_flags {
+      name  = "log_connections"
+      value = "on"
+    }
+    database_flags {
+      name  = "log_checkpoints"
+      value = "on"
+    }
   }
 
 }

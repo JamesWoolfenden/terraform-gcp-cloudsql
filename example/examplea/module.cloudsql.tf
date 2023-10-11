@@ -4,7 +4,7 @@ module "cloudsql" {
   network_name = module.network.vpc.name
   database     = var.database
   users        = var.users
-  depends_on = [ module.network ]
+  depends_on   = [module.network]
 }
 
 module "network" {
@@ -16,6 +16,6 @@ module "network" {
   range_name = "tf-test-secondary-range-update1" }]
   region = "europe-west2"
   common_tags = {
-    pike= "permissions"
+    pike = "permissions"
   }
 }

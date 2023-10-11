@@ -100,7 +100,6 @@ No modules.
 | <a name="input_mw_hour"></a> [mw\_hour](#input\_mw\_hour) | n/a | `number` | `12` | no |
 | <a name="input_name"></a> [name](#input\_name) | The name of the database instance | `string` | n/a | yes |
 | <a name="input_network_name"></a> [network\_name](#input\_network\_name) | The name of the VCP to provision this in to | `string` | n/a | yes |
-| <a name="input_project"></a> [project](#input\_project) | The name of the GCP project | `string` | n/a | yes |
 | <a name="input_require_ssl"></a> [require\_ssl](#input\_require\_ssl) | Require SSL connections or not. | `bool` | `true` | no |
 | <a name="input_users"></a> [users](#input\_users) | A list of user that belong to a database instance | <pre>list(object({<br>    name     = string<br>    password = string<br>  }))</pre> | `[]` | no |
 

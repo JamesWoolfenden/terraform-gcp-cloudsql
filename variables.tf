@@ -4,10 +4,6 @@ variable "network_name" {
   type        = string
 }
 
-variable "project" {
-  description = "The name of the GCP project"
-  type        = string
-}
 
 variable "name" {
   description = "The name of the database instance"

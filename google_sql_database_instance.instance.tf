@@ -3,7 +3,6 @@ resource "google_sql_database_instance" "instance" {
   database_version = var.instance["database_version"]
   name             = var.name
   region           = var.instance["region"]
-  project          = var.project
 
   depends_on = [
     google_service_networking_connection.private_vpc_connection

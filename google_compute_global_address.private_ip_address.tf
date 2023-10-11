@@ -1,5 +1,4 @@
 resource "google_compute_global_address" "private_ip_address" {
-  project       = var.project
   name          = var.name
   purpose       = "VPC_PEERING"
   address_type  = "INTERNAL"

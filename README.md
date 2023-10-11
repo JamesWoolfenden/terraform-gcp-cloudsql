@@ -22,7 +22,6 @@ module cloudsql {
   source       = "JamesWoolfenden/cloudsql/gcp"
   version      = "0.1.13"
   name         = var.name
-  project      = var.project
   network_name = var.network_name
   database     = var.database
   users        = var.users

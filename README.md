@@ -72,7 +72,7 @@ No requirements.
 ## Providers
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="provider_google"></a> [google](#provider\_google) | n/a |
 
 ## Modules
@@ -82,7 +82,7 @@ No modules.
 ## Resources
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [google_compute_global_address.private_ip_address](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_global_address) | resource |
 | [google_service_networking_connection.private_vpc_connection](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/service_networking_connection) | resource |
 | [google_sql_database.database](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database) | resource |
@@ -93,20 +93,20 @@ No modules.
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
-| <a name="input_database"></a> [database](#input\_database) | A list of objects that describes if any databases to be created | <pre>list(object({<br>    name = string<br>  }))</pre> | `[]` | no |
-| <a name="input_instance"></a> [instance](#input\_instance) | n/a | `map(any)` | <pre>{<br>  "database_version": "POSTGRES_14",<br>  "region": "us-central1",<br>  "tier": "db-custom-1-3840"<br>}</pre> | no |
+| ---- | ----------- | ---- | ------- | :------: |
+| <a name="input_database"></a> [database](#input\_database) | A list of objects that describes if any databases to be created | <pre>list(object({<br/>    name = string<br/>  }))</pre> | `[]` | no |
+| <a name="input_instance"></a> [instance](#input\_instance) | n/a | `map(any)` | <pre>{<br/>  "database_version": "POSTGRES_14",<br/>  "region": "us-central1",<br/>  "tier": "db-custom-1-3840"<br/>}</pre> | no |
 | <a name="input_mw_day"></a> [mw\_day](#input\_mw\_day) | n/a | `number` | `1` | no |
 | <a name="input_mw_hour"></a> [mw\_hour](#input\_mw\_hour) | n/a | `number` | `12` | no |
 | <a name="input_name"></a> [name](#input\_name) | The name of the database instance | `string` | n/a | yes |
 | <a name="input_network_name"></a> [network\_name](#input\_network\_name) | The name of the VCP to provision this in to | `string` | n/a | yes |
 | <a name="input_require_ssl"></a> [require\_ssl](#input\_require\_ssl) | Require SSL connections or not. | `bool` | `true` | no |
-| <a name="input_users"></a> [users](#input\_users) | A list of user that belong to a database instance | <pre>list(object({<br>    name     = string<br>    password = string<br>  }))</pre> | `[]` | no |
+| <a name="input_users"></a> [users](#input\_users) | A list of user that belong to a database instance | <pre>list(object({<br/>    name     = string<br/>    password = string<br/>  }))</pre> | `[]` | no |
 
 ## Outputs
 
 | Name | Description |
-|------|-------------|
+| ---- | ----------- |
 | <a name="output_instance"></a> [instance](#output\_instance) | n/a |
 | <a name="output_network"></a> [network](#output\_network) | n/a |
 | <a name="output_private_ip_address"></a> [private\_ip\_address](#output\_private\_ip\_address) | n/a |

@@ -8,7 +8,7 @@ module "cloudsql" {
 }
 
 module "network" {
-  source = "git::https://github.com/jameswoolfenden/terraform-gcp-network.git?ref=d5230e8dab3a0d2110c60da242986ac85e01d8e0" #v0.0.35
+  source        = "git::https://github.com/jameswoolfenden/terraform-gcp-network.git?ref=d5230e8dab3a0d2110c60da242986ac85e01d8e0" #v0.0.35
   name          = "examplec"
   ip_cidr_range = "10.128.0.0/16"
   secondary_ip_range = [{

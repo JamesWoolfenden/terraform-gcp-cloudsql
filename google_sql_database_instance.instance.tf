@@ -13,7 +13,7 @@ resource "google_sql_database_instance" "instance" {
     ip_configuration {
       ipv4_enabled    = false
       private_network = data.google_compute_network.private_network.self_link
-      require_ssl     = var.require_ssl
+      ssl_mode        = var.require_ssl ? "ENCRYPTED_ONLY" : "ALLOW_UNENCRYPTED_AND_ENCRYPTED"
     }
     maintenance_window {
       day  = var.mw_day

@@ -121,7 +121,7 @@ The Terraform resource required is:
 ```golang
 
 resource "google_project_iam_custom_role" "terraform_pike" {
-  project     = "pike"
+  project     = "pike-477416"
   role_id     = "terraform_pike"
   title       = "terraform_pike"
   description = "A user with least privileges"
@@ -143,12 +143,15 @@ resource "google_project_iam_custom_role" "terraform_pike" {
     "compute.globalAddresses.delete",
     "compute.globalAddresses.deleteInternal",
     "compute.globalAddresses.get",
+    "compute.globalAddresses.setLabels",
     "compute.networks.get",
     "compute.networks.removePeering",
     "compute.networks.use",
     "resourcemanager.projects.get",
     "servicenetworking.services.addPeering",
-    "servicenetworking.services.get"
+    "servicenetworking.services.deleteConnection",
+    "servicenetworking.services.get",
+    "serviceusage.operations.get"
   ]
 }
 
@@ -176,7 +179,7 @@ Please use the [issue tracker](https://github.com/jameswoolfenden/terraform-gcp-
 
 ## Copyrights
 
-Copyright © 2019-2023 James Woolfenden
+Copyright © 2019-2026 James Woolfenden
 
 ## License
 

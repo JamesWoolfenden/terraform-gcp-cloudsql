@@ -23,6 +23,10 @@ variable "database" {
     name = string
   }))
   default = []
+  validation {
+    condition     = alltrue([for db in var.database : length(db.name) > 0])
+    error_message = "All database names must not be empty."
+  }
 }
 
 variable "users" {
@@ -33,6 +37,10 @@ variable "users" {
   }))
   default   = []
   sensitive = true
+  validation {
+    condition     = alltrue([for u in var.users : length(u.name) > 0])
+    error_message = "All user names must not be empty."
+  }
 }
 
 variable "instance" {
@@ -43,6 +51,10 @@ variable "instance" {
     region           = optional(string, "us-central1")
   })
   default = {}
+  validation {
+    condition     = length(var.instance.tier) > 0 && length(var.instance.region) > 0
+    error_message = "instance.tier and instance.region must not be empty."
+  }
 }
 
 variable "require_ssl" {

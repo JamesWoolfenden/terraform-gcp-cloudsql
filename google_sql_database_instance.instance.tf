@@ -1,3 +1,4 @@
+# holden:ignore:HLD_GCP_010 — ssl_mode resolves to ENCRYPTED_ONLY when require_ssl = true (the default); holden cannot evaluate the ternary
 resource "google_sql_database_instance" "this" {
   #checkov:skip=CKV_GCP_6: ssl_mode is set to ENCRYPTED_ONLY when require_ssl = true (the default); checkov cannot evaluate the ternary statically
   #checkov:skip=CKV_GCP_79: database_version is caller-controlled via var.instance.database_version; callers must specify the latest version appropriate for their workload

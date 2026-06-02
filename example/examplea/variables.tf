@@ -10,7 +10,7 @@ variable "tier" {
 }
 variable "database_version" {
   type    = string
-  default = "POSTGRES_14"
+  default = "POSTGRES_16"
 }
 variable "database" {
   description = "A list of objects that describes if any databases to be created"

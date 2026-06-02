@@ -1,17 +1,24 @@
 
 variable "network_name" {
-  description = "The name of the VCP to provision this in to"
+  description = "The name of the VPC network to provision this instance into."
   type        = string
+  validation {
+    condition     = length(var.network_name) > 0
+    error_message = "network_name must not be empty."
+  }
 }
 
-
 variable "name" {
-  description = "The name of the database instance"
+  description = "The name of the Cloud SQL instance."
   type        = string
+  validation {
+    condition     = length(var.name) > 0
+    error_message = "name must not be empty."
+  }
 }
 
 variable "database" {
-  description = "A list of objects that describes if any databases to be created"
+  description = "Databases to create on the instance."
   type = list(object({
     name = string
   }))
@@ -19,7 +26,7 @@ variable "database" {
 }
 
 variable "users" {
-  description = "A list of users to create on the database instance. Passwords are stored in Terraform state — prefer passing random_password references rather than literal values."
+  description = "Users to create on the instance. Passwords are stored in Terraform state — prefer random_password references rather than literal values."
   type = list(object({
     name     = string
     password = string
@@ -29,16 +36,17 @@ variable "users" {
 }
 
 variable "instance" {
-  type = map(any)
-  default = {
-    tier             = "db-custom-1-3840"
-    database_version = "POSTGRES_14"
-    region           = "us-central1"
-  }
+  description = "Cloud SQL instance configuration."
+  type = object({
+    tier             = optional(string, "db-custom-1-3840")
+    database_version = optional(string, "POSTGRES_16")
+    region           = optional(string, "us-central1")
+  })
+  default = {}
 }
 
 variable "require_ssl" {
-  description = "Require SSL connections or not."
+  description = "Require SSL for all incoming connections (sets ssl_mode to ENCRYPTED_ONLY)."
   type        = bool
   default     = true
 }
@@ -47,6 +55,30 @@ variable "labels" {
   description = "Labels to apply to all resources created by this module."
   type        = map(string)
   default     = {}
+  validation {
+    condition     = alltrue([for k in keys(var.labels) : can(regex("^[a-z0-9_-]+$", k))])
+    error_message = "All label keys must match ^[a-z0-9_-]+$."
+  }
+}
+
+variable "mw_day" {
+  description = "Day of the week for the maintenance window (1 = Monday, 7 = Sunday)."
+  type        = number
+  default     = 1
+  validation {
+    condition     = var.mw_day >= 1 && var.mw_day <= 7
+    error_message = "mw_day must be between 1 (Monday) and 7 (Sunday)."
+  }
+}
+
+variable "mw_hour" {
+  description = "Hour of the day (UTC) for the maintenance window (0–23)."
+  type        = number
+  default     = 12
+  validation {
+    condition     = var.mw_hour >= 0 && var.mw_hour <= 23
+    error_message = "mw_hour must be between 0 and 23."
+  }
 }
 
 variable "private_ip_prefix_length" {

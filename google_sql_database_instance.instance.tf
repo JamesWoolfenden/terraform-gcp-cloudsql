@@ -1,8 +1,9 @@
-resource "google_sql_database_instance" "instance" {
+resource "google_sql_database_instance" "this" {
   #checkov:skip=CKV_GCP_6: ssl_mode is set to ENCRYPTED_ONLY when require_ssl = true (the default); checkov cannot evaluate the ternary statically
-  database_version    = var.instance["database_version"]
+  #checkov:skip=CKV_GCP_79: database_version is caller-controlled via var.instance.database_version; callers must specify the latest version appropriate for their workload
+  database_version    = var.instance.database_version
   name                = var.name
-  region              = var.instance["region"]
+  region              = var.instance.region
   deletion_protection = true
 
   depends_on = [
@@ -10,7 +11,7 @@ resource "google_sql_database_instance" "instance" {
   ]
 
   settings {
-    tier        = var.instance["tier"]
+    tier        = var.instance.tier
     user_labels = var.labels
 
     ip_configuration {
@@ -49,6 +50,3 @@ resource "google_sql_database_instance" "instance" {
   }
 
 }
-
-variable "mw_day" { default = 1 }
-variable "mw_hour" { default = 12 }

@@ -19,12 +19,13 @@ variable "database" {
 }
 
 variable "users" {
-  description = "A list of user that belong to a database instance"
+  description = "A list of users to create on the database instance. Passwords are stored in Terraform state — prefer passing random_password references rather than literal values."
   type = list(object({
     name     = string
     password = string
   }))
-  default = []
+  default   = []
+  sensitive = true
 }
 
 variable "instance" {
@@ -40,4 +41,20 @@ variable "require_ssl" {
   description = "Require SSL connections or not."
   type        = bool
   default     = true
+}
+
+variable "labels" {
+  description = "Labels to apply to all resources created by this module."
+  type        = map(string)
+  default     = {}
+}
+
+variable "private_ip_prefix_length" {
+  description = "Prefix length for the private IP range reserved for VPC peering (e.g. 24 = 256 addresses, sufficient for Cloud SQL)."
+  type        = number
+  default     = 24
+  validation {
+    condition     = var.private_ip_prefix_length >= 16 && var.private_ip_prefix_length <= 29
+    error_message = "private_ip_prefix_length must be between 16 and 29."
+  }
 }

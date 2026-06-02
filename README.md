@@ -96,12 +96,14 @@ No modules.
 | ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_database"></a> [database](#input\_database) | A list of objects that describes if any databases to be created | <pre>list(object({<br/>    name = string<br/>  }))</pre> | `[]` | no |
 | <a name="input_instance"></a> [instance](#input\_instance) | n/a | `map(any)` | <pre>{<br/>  "database_version": "POSTGRES_14",<br/>  "region": "us-central1",<br/>  "tier": "db-custom-1-3840"<br/>}</pre> | no |
+| <a name="input_labels"></a> [labels](#input\_labels) | Labels to apply to all resources created by this module. | `map(string)` | `{}` | no |
 | <a name="input_mw_day"></a> [mw\_day](#input\_mw\_day) | n/a | `number` | `1` | no |
 | <a name="input_mw_hour"></a> [mw\_hour](#input\_mw\_hour) | n/a | `number` | `12` | no |
 | <a name="input_name"></a> [name](#input\_name) | The name of the database instance | `string` | n/a | yes |
 | <a name="input_network_name"></a> [network\_name](#input\_network\_name) | The name of the VCP to provision this in to | `string` | n/a | yes |
+| <a name="input_private_ip_prefix_length"></a> [private\_ip\_prefix\_length](#input\_private\_ip\_prefix\_length) | Prefix length for the private IP range reserved for VPC peering (e.g. 24 = 256 addresses, sufficient for Cloud SQL). | `number` | `24` | no |
 | <a name="input_require_ssl"></a> [require\_ssl](#input\_require\_ssl) | Require SSL connections or not. | `bool` | `true` | no |
-| <a name="input_users"></a> [users](#input\_users) | A list of user that belong to a database instance | <pre>list(object({<br/>    name     = string<br/>    password = string<br/>  }))</pre> | `[]` | no |
+| <a name="input_users"></a> [users](#input\_users) | A list of users to create on the database instance. Passwords are stored in Terraform state â€” prefer passing random\_password references rather than literal values. | <pre>list(object({<br/>    name     = string<br/>    password = string<br/>  }))</pre> | `[]` | no |
 
 ## Outputs
 

@@ -9,14 +9,12 @@ module "cloudsql" {
 }
 
 module "network" {
-  source        = "git::https://github.com/jameswoolfenden/terraform-gcp-network.git?ref=fb279c3" #secondary_ip_range dynamic block fix
+  source        = "git::https://github.com/jameswoolfenden/terraform-gcp-network.git?ref=b430e0423b285e465b62dc630f6515b378531acb"
   name          = "examplec"
   ip_cidr_range = "10.128.0.0/16"
   secondary_ip_range = [{
     ip_cidr_range = "192.168.10.0/24"
-  range_name = "tf-test-secondary-range-update1" }]
+    range_name    = "tf-test-secondary-range-update1"
+  }]
   region = "europe-west2"
-  common_tags = {
-    pike = "permissions"
-  }
 }

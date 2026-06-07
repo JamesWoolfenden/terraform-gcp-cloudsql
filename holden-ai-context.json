@@ -2743,226 +2743,16 @@
   },
   "findings": [
     {
-      "policy_id": "HLD_TF_006",
-      "policy_name": "Variables must have a description",
-      "principle": "maintainability",
-      "remediation": "Add a `description = \"...\"` attribute to the variable block.",
-      "resource": {
-        "end_line": 47,
-        "file": "google_sql_database_instance.instance.tf",
-        "id": "var.mw_hour",
-        "line": 47,
-        "source": "variable \"mw_hour\" { default = 12 }",
-        "type": "variable"
-      },
-      "result": "FAIL",
-      "severity": "LOW",
-      "violation": {
-        "actual": null,
-        "attr_path": "description",
-        "expected": "var.mw_hour: description must not be null"
-      }
-    },
-    {
-      "policy_id": "HLD_TF_012",
-      "policy_name": "Variables must declare a type",
-      "principle": "maintainability",
-      "remediation": "Add `type = string` (or the correct type constraint) to the variable block.",
-      "resource": {
-        "end_line": 47,
-        "file": "google_sql_database_instance.instance.tf",
-        "id": "var.mw_hour",
-        "line": 47,
-        "source": "variable \"mw_hour\" { default = 12 }",
-        "type": "variable"
-      },
-      "result": "FAIL",
-      "severity": "MEDIUM",
-      "violation": {
-        "actual": null,
-        "attr_path": "type",
-        "expected": "var.mw_hour: type must not be null"
-      }
-    },
-    {
       "policy_id": "HLD_TF_021",
       "policy_name": "Variables should have validation rules",
       "principle": "maintainability",
       "remediation": "Add a `validation { condition = ... error_message = \"...\" }` block to the variable to enforce valid values.",
       "resource": {
-        "end_line": 47,
-        "file": "google_sql_database_instance.instance.tf",
-        "id": "var.mw_hour",
-        "line": 47,
-        "source": "variable \"mw_hour\" { default = 12 }",
-        "type": "variable"
-      },
-      "result": "FAIL",
-      "severity": "INFO",
-      "violation": {
-        "actual": null,
-        "attr_path": "",
-        "expected": "var.mw_hour: none of the conditions were satisfied"
-      }
-    },
-    {
-      "policy_id": "HLD_TF_031",
-      "policy_name": "Variables should have a description",
-      "principle": "maintainability",
-      "remediation": "Add a `description` attribute to every `variable` block explaining what the value represents and any constraints. Descriptions appear in `terraform-docs` output and make modules self-documenting without requiring readers to trace usage through the code.",
-      "resource": {
-        "end_line": 47,
-        "file": "google_sql_database_instance.instance.tf",
-        "id": "var.mw_hour",
-        "line": 47,
-        "source": "variable \"mw_hour\" { default = 12 }",
-        "type": "variable"
-      },
-      "result": "FAIL",
-      "severity": "INFO",
-      "violation": {
-        "actual": null,
-        "attr_path": "description",
-        "expected": "var.mw_hour: description must not be null"
-      }
-    },
-    {
-      "policy_id": "HLD_TF_017",
-      "policy_name": "Variable blocks should be defined in variables.tf",
-      "principle": "maintainability",
-      "remediation": "Move variable blocks into a dedicated `variables.tf` file to follow standard Terraform project layout.",
-      "resource": {
-        "end_line": 47,
-        "file": "google_sql_database_instance.instance.tf",
-        "id": "var.mw_hour",
-        "line": 47,
-        "source": "variable \"mw_hour\" { default = 12 }",
-        "type": "variable"
-      },
-      "result": "FAIL",
-      "severity": "INFO",
-      "violation": {
-        "actual": "google_sql_database_instance.instance.tf",
-        "attr_path": "__file__",
-        "expected": "var.mw_hour: __file__ \"google_sql_database_instance.instance.tf\" does not match pattern \"^variables\\\\.tf$\""
-      }
-    },
-    {
-      "policy_id": "HLD_TF_006",
-      "policy_name": "Variables must have a description",
-      "principle": "maintainability",
-      "remediation": "Add a `description = \"...\"` attribute to the variable block.",
-      "resource": {
-        "end_line": 46,
-        "file": "google_sql_database_instance.instance.tf",
-        "id": "var.mw_day",
-        "line": 46,
-        "source": "variable \"mw_day\" { default = 1 }",
-        "type": "variable"
-      },
-      "result": "FAIL",
-      "severity": "LOW",
-      "violation": {
-        "actual": null,
-        "attr_path": "description",
-        "expected": "var.mw_day: description must not be null"
-      }
-    },
-    {
-      "policy_id": "HLD_TF_012",
-      "policy_name": "Variables must declare a type",
-      "principle": "maintainability",
-      "remediation": "Add `type = string` (or the correct type constraint) to the variable block.",
-      "resource": {
-        "end_line": 46,
-        "file": "google_sql_database_instance.instance.tf",
-        "id": "var.mw_day",
-        "line": 46,
-        "source": "variable \"mw_day\" { default = 1 }",
-        "type": "variable"
-      },
-      "result": "FAIL",
-      "severity": "MEDIUM",
-      "violation": {
-        "actual": null,
-        "attr_path": "type",
-        "expected": "var.mw_day: type must not be null"
-      }
-    },
-    {
-      "policy_id": "HLD_TF_021",
-      "policy_name": "Variables should have validation rules",
-      "principle": "maintainability",
-      "remediation": "Add a `validation { condition = ... error_message = \"...\" }` block to the variable to enforce valid values.",
-      "resource": {
-        "end_line": 46,
-        "file": "google_sql_database_instance.instance.tf",
-        "id": "var.mw_day",
-        "line": 46,
-        "source": "variable \"mw_day\" { default = 1 }",
-        "type": "variable"
-      },
-      "result": "FAIL",
-      "severity": "INFO",
-      "violation": {
-        "actual": null,
-        "attr_path": "",
-        "expected": "var.mw_day: none of the conditions were satisfied"
-      }
-    },
-    {
-      "policy_id": "HLD_TF_031",
-      "policy_name": "Variables should have a description",
-      "principle": "maintainability",
-      "remediation": "Add a `description` attribute to every `variable` block explaining what the value represents and any constraints. Descriptions appear in `terraform-docs` output and make modules self-documenting without requiring readers to trace usage through the code.",
-      "resource": {
-        "end_line": 46,
-        "file": "google_sql_database_instance.instance.tf",
-        "id": "var.mw_day",
-        "line": 46,
-        "source": "variable \"mw_day\" { default = 1 }",
-        "type": "variable"
-      },
-      "result": "FAIL",
-      "severity": "INFO",
-      "violation": {
-        "actual": null,
-        "attr_path": "description",
-        "expected": "var.mw_day: description must not be null"
-      }
-    },
-    {
-      "policy_id": "HLD_TF_017",
-      "policy_name": "Variable blocks should be defined in variables.tf",
-      "principle": "maintainability",
-      "remediation": "Move variable blocks into a dedicated `variables.tf` file to follow standard Terraform project layout.",
-      "resource": {
-        "end_line": 46,
-        "file": "google_sql_database_instance.instance.tf",
-        "id": "var.mw_day",
-        "line": 46,
-        "source": "variable \"mw_day\" { default = 1 }",
-        "type": "variable"
-      },
-      "result": "FAIL",
-      "severity": "INFO",
-      "violation": {
-        "actual": "google_sql_database_instance.instance.tf",
-        "attr_path": "__file__",
-        "expected": "var.mw_day: __file__ \"google_sql_database_instance.instance.tf\" does not match pattern \"^variables\\\\.tf$\""
-      }
-    },
-    {
-      "policy_id": "HLD_TF_021",
-      "policy_name": "Variables should have validation rules",
-      "principle": "maintainability",
-      "remediation": "Add a `validation { condition = ... error_message = \"...\" }` block to the variable to enforce valid values.",
-      "resource": {
-        "end_line": 19,
+        "end_line": 26,
         "file": "variables.tf",
         "id": "var.database",
-        "line": 13,
-        "source": "variable \"database\" {\n  description = \"A list of objects that describes if any databases to be created\"\n  type = list(object({\n    name = string\n  }))\n  default = []\n}",
+        "line": 20,
+        "source": "variable \"database\" {\n  description = \"Databases to create on the instance.\"\n  type = list(object({\n    name = string\n  }))\n  default = []\n}",
         "type": "variable"
       },
       "result": "FAIL",
@@ -2974,247 +2764,16 @@
       }
     },
     {
-      "policy_id": "HLD_TF_007",
-      "policy_name": "Outputs must have a description",
-      "principle": "maintainability",
-      "remediation": "Add a `description = \"...\"` attribute to the output block.",
-      "resource": {
-        "end_line": 8,
-        "file": "outputs.tf",
-        "id": "output.instance",
-        "line": 5,
-        "source": "output \"instance\" {\n  sensitive = true\n  value     = google_sql_database_instance.instance\n}",
-        "type": "output"
-      },
-      "result": "FAIL",
-      "severity": "LOW",
-      "violation": {
-        "actual": null,
-        "attr_path": "description",
-        "expected": "output.instance: description must not be null"
-      }
-    },
-    {
-      "policy_id": "HLD_TF_032",
-      "policy_name": "Outputs should have a description",
-      "principle": "maintainability",
-      "remediation": "Add a `description` attribute to every `output` block explaining what the value represents and when a caller would use it. Descriptions appear in `terraform-docs` output and in the Terraform registry, and are the primary way module consumers understand what is being exposed.",
-      "resource": {
-        "end_line": 8,
-        "file": "outputs.tf",
-        "id": "output.instance",
-        "line": 5,
-        "source": "output \"instance\" {\n  sensitive = true\n  value     = google_sql_database_instance.instance\n}",
-        "type": "output"
-      },
-      "result": "FAIL",
-      "severity": "INFO",
-      "violation": {
-        "actual": null,
-        "attr_path": "description",
-        "expected": "output.instance: description must not be null"
-      }
-    },
-    {
-      "policy_id": "HLD_TF_007",
-      "policy_name": "Outputs must have a description",
-      "principle": "maintainability",
-      "remediation": "Add a `description = \"...\"` attribute to the output block.",
-      "resource": {
-        "end_line": 16,
-        "file": "outputs.tf",
-        "id": "output.private_ip_address",
-        "line": 14,
-        "source": "output \"private_ip_address\" {\n  value = google_compute_global_address.private_ip_address\n}",
-        "type": "output"
-      },
-      "result": "FAIL",
-      "severity": "LOW",
-      "violation": {
-        "actual": null,
-        "attr_path": "description",
-        "expected": "output.private_ip_address: description must not be null"
-      }
-    },
-    {
-      "policy_id": "HLD_TF_032",
-      "policy_name": "Outputs should have a description",
-      "principle": "maintainability",
-      "remediation": "Add a `description` attribute to every `output` block explaining what the value represents and when a caller would use it. Descriptions appear in `terraform-docs` output and in the Terraform registry, and are the primary way module consumers understand what is being exposed.",
-      "resource": {
-        "end_line": 16,
-        "file": "outputs.tf",
-        "id": "output.private_ip_address",
-        "line": 14,
-        "source": "output \"private_ip_address\" {\n  value = google_compute_global_address.private_ip_address\n}",
-        "type": "output"
-      },
-      "result": "FAIL",
-      "severity": "INFO",
-      "violation": {
-        "actual": null,
-        "attr_path": "description",
-        "expected": "output.private_ip_address: description must not be null"
-      }
-    },
-    {
       "policy_id": "HLD_TF_021",
       "policy_name": "Variables should have validation rules",
       "principle": "maintainability",
       "remediation": "Add a `validation { condition = ... error_message = \"...\" }` block to the variable to enforce valid values.",
       "resource": {
-        "end_line": 5,
-        "file": "variables.tf",
-        "id": "var.network_name",
-        "line": 2,
-        "source": "variable \"network_name\" {\n  description = \"The name of the VCP to provision this in to\"\n  type        = string\n}",
-        "type": "variable"
-      },
-      "result": "FAIL",
-      "severity": "INFO",
-      "violation": {
-        "actual": null,
-        "attr_path": "",
-        "expected": "var.network_name: none of the conditions were satisfied"
-      }
-    },
-    {
-      "policy_id": "HLD_TF_053",
-      "policy_name": "count.index must not appear in resource name attributes",
-      "principle": "maintainability",
-      "remediation": "Replace count + count.index with for_each and a meaningful key:\n\n  # Before \u2014 fragile: inserting \"bob\" before \"carol\" destroys and recreates carol\n  resource \"aws_iam_user\" \"users\" {\n    count = length(var.usernames)\n    name  = \"user-${count.index}\"\n  }\n\n  # After \u2014 stable: each user is keyed by name, order does not matter\n  resource \"aws_iam_user\" \"users\" {\n    for_each = toset(var.usernames)\n    name     = each.key\n  }\n",
-      "resource": {
-        "end_line": 5,
-        "file": "google_sql_database.database.tf",
-        "id": "google_sql_database.database",
-        "line": 1,
-        "source": "resource \"google_sql_database\" \"database\" {\n  count    = length(var.database)\n  name     = var.database[count.index][\"name\"]\n  instance = google_sql_database_instance.instance.name\n}",
-        "type": "google_sql_database"
-      },
-      "result": "FAIL",
-      "severity": "LOW",
-      "violation": {
-        "actual": true,
-        "attr_path": "__count_index_in_name__",
-        "expected": "google_sql_database.database: __count_index_in_name__ must be absent"
-      }
-    },
-    {
-      "policy_id": "HLD_TF_036",
-      "policy_name": "Resource labels must not repeat the resource type",
-      "principle": "maintainability",
-      "remediation": "Rename the resource label to something meaningful. For example:\n- `resource \"aws_ecs_service\" \"api\"` not `\"service\"`\n- `resource \"aws_iam_role\" \"this\"` not `\"role\"`\n- `resource \"aws_security_group\" \"allow_https\"` not `\"security_group\"`\nA good label describes the instance, not its type.\n",
-      "resource": {
-        "end_line": 5,
-        "file": "google_sql_database.database.tf",
-        "id": "google_sql_database.database",
-        "line": 1,
-        "source": "resource \"google_sql_database\" \"database\" {\n  count    = length(var.database)\n  name     = var.database[count.index][\"name\"]\n  instance = google_sql_database_instance.instance.name\n}",
-        "type": "google_sql_database"
-      },
-      "result": "FAIL",
-      "severity": "INFO",
-      "violation": {
-        "actual": null,
-        "attr_path": "",
-        "expected": "google_sql_database.database: label \"database\" repeats the resource type suffix \u2014 use a descriptive name instead"
-      }
-    },
-    {
-      "policy_id": "HLD_TF_053",
-      "policy_name": "count.index must not appear in resource name attributes",
-      "principle": "maintainability",
-      "remediation": "Replace count + count.index with for_each and a meaningful key:\n\n  # Before \u2014 fragile: inserting \"bob\" before \"carol\" destroys and recreates carol\n  resource \"aws_iam_user\" \"users\" {\n    count = length(var.usernames)\n    name  = \"user-${count.index}\"\n  }\n\n  # After \u2014 stable: each user is keyed by name, order does not matter\n  resource \"aws_iam_user\" \"users\" {\n    for_each = toset(var.usernames)\n    name     = each.key\n  }\n",
-      "resource": {
-        "end_line": 6,
-        "file": "google_sql_user.users.tf",
-        "id": "google_sql_user.users",
-        "line": 1,
-        "source": "resource \"google_sql_user\" \"users\" {\n  count    = length(var.users)\n  name     = var.users[count.index][\"name\"]\n  instance = google_sql_database_instance.instance.name\n  password = var.users[count.index][\"password\"]\n}",
-        "type": "google_sql_user"
-      },
-      "result": "FAIL",
-      "severity": "LOW",
-      "violation": {
-        "actual": true,
-        "attr_path": "__count_index_in_name__",
-        "expected": "google_sql_user.users: __count_index_in_name__ must be absent"
-      }
-    },
-    {
-      "policy_id": "HLD_TF_021",
-      "policy_name": "Variables should have validation rules",
-      "principle": "maintainability",
-      "remediation": "Add a `validation { condition = ... error_message = \"...\" }` block to the variable to enforce valid values.",
-      "resource": {
-        "end_line": 11,
-        "file": "variables.tf",
-        "id": "var.name",
-        "line": 8,
-        "source": "variable \"name\" {\n  description = \"The name of the database instance\"\n  type        = string\n}",
-        "type": "variable"
-      },
-      "result": "FAIL",
-      "severity": "INFO",
-      "violation": {
-        "actual": null,
-        "attr_path": "",
-        "expected": "var.name: none of the conditions were satisfied"
-      }
-    },
-    {
-      "policy_id": "HLD_TF_021",
-      "policy_name": "Variables should have validation rules",
-      "principle": "maintainability",
-      "remediation": "Add a `validation { condition = ... error_message = \"...\" }` block to the variable to enforce valid values.",
-      "resource": {
-        "end_line": 28,
-        "file": "variables.tf",
-        "id": "var.users",
-        "line": 21,
-        "source": "variable \"users\" {\n  description = \"A list of user that belong to a database instance\"\n  type = list(object({\n    name     = string\n    password = string\n  }))\n  default = []\n}",
-        "type": "variable"
-      },
-      "result": "FAIL",
-      "severity": "INFO",
-      "violation": {
-        "actual": null,
-        "attr_path": "",
-        "expected": "var.users: none of the conditions were satisfied"
-      }
-    },
-    {
-      "policy_id": "HLD_TF_006",
-      "policy_name": "Variables must have a description",
-      "principle": "maintainability",
-      "remediation": "Add a `description = \"...\"` attribute to the variable block.",
-      "resource": {
-        "end_line": 37,
+        "end_line": 46,
         "file": "variables.tf",
         "id": "var.instance",
-        "line": 30,
-        "source": "variable \"instance\" {\n  type = map(any)\n  default = {\n    tier             = \"db-custom-1-3840\"\n    database_version = \"POSTGRES_14\"\n    region           = \"us-central1\"\n  }\n}",
-        "type": "variable"
-      },
-      "result": "FAIL",
-      "severity": "LOW",
-      "violation": {
-        "actual": null,
-        "attr_path": "description",
-        "expected": "var.instance: description must not be null"
-      }
-    },
-    {
-      "policy_id": "HLD_TF_021",
-      "policy_name": "Variables should have validation rules",
-      "principle": "maintainability",
-      "remediation": "Add a `validation { condition = ... error_message = \"...\" }` block to the variable to enforce valid values.",
-      "resource": {
-        "end_line": 37,
-        "file": "variables.tf",
-        "id": "var.instance",
-        "line": 30,
-        "source": "variable \"instance\" {\n  type = map(any)\n  default = {\n    tier             = \"db-custom-1-3840\"\n    database_version = \"POSTGRES_14\"\n    region           = \"us-central1\"\n  }\n}",
+        "line": 38,
+        "source": "variable \"instance\" {\n  description = \"Cloud SQL instance configuration.\"\n  type = object({\n    tier             = optional(string, \"db-custom-1-3840\")\n    database_version = optional(string, \"POSTGRES_16\")\n    region           = optional(string, \"us-central1\")\n  })\n  default = {}\n}",
         "type": "variable"
       },
       "result": "FAIL",
@@ -3226,129 +2785,24 @@
       }
     },
     {
-      "policy_id": "HLD_TF_031",
-      "policy_name": "Variables should have a description",
+      "policy_id": "HLD_TF_021",
+      "policy_name": "Variables should have validation rules",
       "principle": "maintainability",
-      "remediation": "Add a `description` attribute to every `variable` block explaining what the value represents and any constraints. Descriptions appear in `terraform-docs` output and make modules self-documenting without requiring readers to trace usage through the code.",
+      "remediation": "Add a `validation { condition = ... error_message = \"...\" }` block to the variable to enforce valid values.",
       "resource": {
-        "end_line": 37,
+        "end_line": 36,
         "file": "variables.tf",
-        "id": "var.instance",
-        "line": 30,
-        "source": "variable \"instance\" {\n  type = map(any)\n  default = {\n    tier             = \"db-custom-1-3840\"\n    database_version = \"POSTGRES_14\"\n    region           = \"us-central1\"\n  }\n}",
+        "id": "var.users",
+        "line": 28,
+        "source": "variable \"users\" {\n  description = \"Users to create on the instance. Passwords are stored in Terraform state \u2014 prefer random_password references rather than literal values.\"\n  type = list(object({\n    name     = string\n    password = string\n  }))\n  default   = []\n  sensitive = true\n}",
         "type": "variable"
       },
       "result": "FAIL",
       "severity": "INFO",
       "violation": {
         "actual": null,
-        "attr_path": "description",
-        "expected": "var.instance: description must not be null"
-      }
-    },
-    {
-      "policy_id": "HLD_TF_007",
-      "policy_name": "Outputs must have a description",
-      "principle": "maintainability",
-      "remediation": "Add a `description = \"...\"` attribute to the output block.",
-      "resource": {
-        "end_line": 3,
-        "file": "outputs.tf",
-        "id": "output.network",
-        "line": 1,
-        "source": "output \"network\" {\n  value = data.google_compute_network.private_network\n}",
-        "type": "output"
-      },
-      "result": "FAIL",
-      "severity": "LOW",
-      "violation": {
-        "actual": null,
-        "attr_path": "description",
-        "expected": "output.network: description must not be null"
-      }
-    },
-    {
-      "policy_id": "HLD_TF_032",
-      "policy_name": "Outputs should have a description",
-      "principle": "maintainability",
-      "remediation": "Add a `description` attribute to every `output` block explaining what the value represents and when a caller would use it. Descriptions appear in `terraform-docs` output and in the Terraform registry, and are the primary way module consumers understand what is being exposed.",
-      "resource": {
-        "end_line": 3,
-        "file": "outputs.tf",
-        "id": "output.network",
-        "line": 1,
-        "source": "output \"network\" {\n  value = data.google_compute_network.private_network\n}",
-        "type": "output"
-      },
-      "result": "FAIL",
-      "severity": "INFO",
-      "violation": {
-        "actual": null,
-        "attr_path": "description",
-        "expected": "output.network: description must not be null"
-      }
-    },
-    {
-      "policy_id": "HLD_TF_007",
-      "policy_name": "Outputs must have a description",
-      "principle": "maintainability",
-      "remediation": "Add a `description = \"...\"` attribute to the output block.",
-      "resource": {
-        "end_line": 12,
-        "file": "outputs.tf",
-        "id": "output.vpc_connection",
-        "line": 10,
-        "source": "output \"vpc_connection\" {\n  value = google_service_networking_connection.private_vpc_connection\n}",
-        "type": "output"
-      },
-      "result": "FAIL",
-      "severity": "LOW",
-      "violation": {
-        "actual": null,
-        "attr_path": "description",
-        "expected": "output.vpc_connection: description must not be null"
-      }
-    },
-    {
-      "policy_id": "HLD_TF_032",
-      "policy_name": "Outputs should have a description",
-      "principle": "maintainability",
-      "remediation": "Add a `description` attribute to every `output` block explaining what the value represents and when a caller would use it. Descriptions appear in `terraform-docs` output and in the Terraform registry, and are the primary way module consumers understand what is being exposed.",
-      "resource": {
-        "end_line": 12,
-        "file": "outputs.tf",
-        "id": "output.vpc_connection",
-        "line": 10,
-        "source": "output \"vpc_connection\" {\n  value = google_service_networking_connection.private_vpc_connection\n}",
-        "type": "output"
-      },
-      "result": "FAIL",
-      "severity": "INFO",
-      "violation": {
-        "actual": null,
-        "attr_path": "description",
-        "expected": "output.vpc_connection: description must not be null"
-      }
-    },
-    {
-      "policy_id": "HLD_GCP_048",
-      "policy_name": "Cloud SQL instances must retain at least 7 automated backups",
-      "principle": "data-protection",
-      "remediation": "Set `backup_configuration.backup_retention_settings.retained_backups` to at\nleast 7 on `google_sql_database_instance`. Also ensure\n`backup_configuration.enabled = true`.\n",
-      "resource": {
-        "end_line": 44,
-        "file": "google_sql_database_instance.instance.tf",
-        "id": "google_sql_database_instance.instance",
-        "line": 1,
-        "source": "resource \"google_sql_database_instance\" \"instance\" {\n  #checkov:skip=CKV_GCP_6: \"Ensure all Cloud SQL database instance requires all incoming connections to use SSL\"\n  database_version = var.instance[\"database_version\"]\n  name             = var.name\n  region           = var.instance[\"region\"]\n\n  depends_on = [\n    google_service_networking_connection.private_vpc_connection\n  ]\n\n  settings {\n    tier = var.instance[\"tier\"]\n    ip_configuration {\n      ipv4_enabled    = false\n      private_network = data.google_compute_network.private_network.self_link\n      ssl_mode        = var.require_ssl ? \"ENCRYPTED_ONLY\" : \"ALLOW_UNENCRYPTED_AND_ENCRYPTED\"\n    }\n    maintenance_window {\n      day  = var.mw_day\n      hour = var.mw_hour\n    }\n    backup_configuration {\n      enabled    = true\n      start_time = \"23:59\"\n    }\n    database_flags {\n      name  = \"log_lock_waits\"\n      value = \"on\"\n    }\n    database_flags {\n      name  = \"log_disconnections\"\n      value = \"on\"\n    }\n    database_flags {\n      name  = \"log_connections\"\n      value = \"on\"\n    }\n    database_flags {\n      name  = \"log_checkpoints\"\n      value = \"on\"\n    }\n  }\n\n}",
-        "type": "google_sql_database_instance"
-      },
-      "result": "FAIL",
-      "severity": "MEDIUM",
-      "violation": {
-        "actual": null,
-        "attr_path": "settings.backup_configuration.backup_retention_settings.retained_backups",
-        "expected": "google_sql_database_instance.instance: settings.backup_configuration.backup_retention_settings.retained_backups is absent (must be >= 7)"
+        "attr_path": "",
+        "expected": "var.users: none of the conditions were satisfied"
       }
     },
     {
@@ -3360,11 +2814,11 @@
       "principle": "encryption",
       "remediation": "Set `settings { ip_configuration { require_ssl = true } }` on the `google_sql_database_instance` resource.",
       "resource": {
-        "end_line": 44,
+        "end_line": 52,
         "file": "google_sql_database_instance.instance.tf",
-        "id": "google_sql_database_instance.instance",
+        "id": "google_sql_database_instance.this",
         "line": 1,
-        "source": "resource \"google_sql_database_instance\" \"instance\" {\n  #checkov:skip=CKV_GCP_6: \"Ensure all Cloud SQL database instance requires all incoming connections to use SSL\"\n  database_version = var.instance[\"database_version\"]\n  name             = var.name\n  region           = var.instance[\"region\"]\n\n  depends_on = [\n    google_service_networking_connection.private_vpc_connection\n  ]\n\n  settings {\n    tier = var.instance[\"tier\"]\n    ip_configuration {\n      ipv4_enabled    = false\n      private_network = data.google_compute_network.private_network.self_link\n      ssl_mode        = var.require_ssl ? \"ENCRYPTED_ONLY\" : \"ALLOW_UNENCRYPTED_AND_ENCRYPTED\"\n    }\n    maintenance_window {\n      day  = var.mw_day\n      hour = var.mw_hour\n    }\n    backup_configuration {\n      enabled    = true\n      start_time = \"23:59\"\n    }\n    database_flags {\n      name  = \"log_lock_waits\"\n      value = \"on\"\n    }\n    database_flags {\n      name  = \"log_disconnections\"\n      value = \"on\"\n    }\n    database_flags {\n      name  = \"log_connections\"\n      value = \"on\"\n    }\n    database_flags {\n      name  = \"log_checkpoints\"\n      value = \"on\"\n    }\n  }\n\n}",
+        "source": "resource \"google_sql_database_instance\" \"this\" {\n  #checkov:skip=CKV_GCP_6: ssl_mode is set to ENCRYPTED_ONLY when require_ssl = true (the default); checkov cannot evaluate the ternary statically\n  #checkov:skip=CKV_GCP_79: database_version is caller-controlled via var.instance.database_version; callers must specify the latest version appropriate for their workload\n  database_version    = var.instance.database_version\n  name                = var.name\n  region              = var.instance.region\n  deletion_protection = true\n\n  depends_on = [\n    google_service_networking_connection.private_vpc_connection\n  ]\n\n  settings {\n    tier        = var.instance.tier\n    user_labels = var.labels\n\n    ip_configuration {\n      ipv4_enabled    = false\n      private_network = data.google_compute_network.private_network.self_link\n      ssl_mode        = var.require_ssl ? \"ENCRYPTED_ONLY\" : \"ALLOW_UNENCRYPTED_AND_ENCRYPTED\"\n    }\n    maintenance_window {\n      day  = var.mw_day\n      hour = var.mw_hour\n    }\n    backup_configuration {\n      enabled                        = true\n      start_time                     = \"23:59\"\n      point_in_time_recovery_enabled = true\n      backup_retention_settings {\n        retained_backups = 7\n      }\n    }\n    database_flags {\n      name  = \"log_lock_waits\"\n      value = \"on\"\n    }\n    database_flags {\n      name  = \"log_disconnections\"\n      value = \"on\"\n    }\n    database_flags {\n      name  = \"log_connections\"\n      value = \"on\"\n    }\n    database_flags {\n      name  = \"log_checkpoints\"\n      value = \"on\"\n    }\n  }\n\n}",
         "type": "google_sql_database_instance"
       },
       "result": "FAIL",
@@ -3372,49 +2826,7 @@
       "violation": {
         "actual": true,
         "attr_path": "settings.ip_configuration.ssl_mode",
-        "expected": "google_sql_database_instance.instance: settings.ip_configuration.ssl_mode must be one of [ENCRYPTED_ONLY TRUSTED_CLIENT_CERTIFICATE_REQUIRED], got true"
-      }
-    },
-    {
-      "policy_id": "HLD_GCP_019",
-      "policy_name": "GCP resources must have labels configured",
-      "principle": "governance",
-      "remediation": "Add the required labels to the `labels` block on the resource.",
-      "resource": {
-        "end_line": 44,
-        "file": "google_sql_database_instance.instance.tf",
-        "id": "google_sql_database_instance.instance",
-        "line": 1,
-        "source": "resource \"google_sql_database_instance\" \"instance\" {\n  #checkov:skip=CKV_GCP_6: \"Ensure all Cloud SQL database instance requires all incoming connections to use SSL\"\n  database_version = var.instance[\"database_version\"]\n  name             = var.name\n  region           = var.instance[\"region\"]\n\n  depends_on = [\n    google_service_networking_connection.private_vpc_connection\n  ]\n\n  settings {\n    tier = var.instance[\"tier\"]\n    ip_configuration {\n      ipv4_enabled    = false\n      private_network = data.google_compute_network.private_network.self_link\n      ssl_mode        = var.require_ssl ? \"ENCRYPTED_ONLY\" : \"ALLOW_UNENCRYPTED_AND_ENCRYPTED\"\n    }\n    maintenance_window {\n      day  = var.mw_day\n      hour = var.mw_hour\n    }\n    backup_configuration {\n      enabled    = true\n      start_time = \"23:59\"\n    }\n    database_flags {\n      name  = \"log_lock_waits\"\n      value = \"on\"\n    }\n    database_flags {\n      name  = \"log_disconnections\"\n      value = \"on\"\n    }\n    database_flags {\n      name  = \"log_connections\"\n      value = \"on\"\n    }\n    database_flags {\n      name  = \"log_checkpoints\"\n      value = \"on\"\n    }\n  }\n\n}",
-        "type": "google_sql_database_instance"
-      },
-      "result": "FAIL",
-      "severity": "LOW",
-      "violation": {
-        "actual": null,
-        "attr_path": "settings.user_labels",
-        "expected": "google_sql_database_instance.instance: settings.user_labels must not be null"
-      }
-    },
-    {
-      "policy_id": "HLD_TF_036",
-      "policy_name": "Resource labels must not repeat the resource type",
-      "principle": "maintainability",
-      "remediation": "Rename the resource label to something meaningful. For example:\n- `resource \"aws_ecs_service\" \"api\"` not `\"service\"`\n- `resource \"aws_iam_role\" \"this\"` not `\"role\"`\n- `resource \"aws_security_group\" \"allow_https\"` not `\"security_group\"`\nA good label describes the instance, not its type.\n",
-      "resource": {
-        "end_line": 44,
-        "file": "google_sql_database_instance.instance.tf",
-        "id": "google_sql_database_instance.instance",
-        "line": 1,
-        "source": "resource \"google_sql_database_instance\" \"instance\" {\n  #checkov:skip=CKV_GCP_6: \"Ensure all Cloud SQL database instance requires all incoming connections to use SSL\"\n  database_version = var.instance[\"database_version\"]\n  name             = var.name\n  region           = var.instance[\"region\"]\n\n  depends_on = [\n    google_service_networking_connection.private_vpc_connection\n  ]\n\n  settings {\n    tier = var.instance[\"tier\"]\n    ip_configuration {\n      ipv4_enabled    = false\n      private_network = data.google_compute_network.private_network.self_link\n      ssl_mode        = var.require_ssl ? \"ENCRYPTED_ONLY\" : \"ALLOW_UNENCRYPTED_AND_ENCRYPTED\"\n    }\n    maintenance_window {\n      day  = var.mw_day\n      hour = var.mw_hour\n    }\n    backup_configuration {\n      enabled    = true\n      start_time = \"23:59\"\n    }\n    database_flags {\n      name  = \"log_lock_waits\"\n      value = \"on\"\n    }\n    database_flags {\n      name  = \"log_disconnections\"\n      value = \"on\"\n    }\n    database_flags {\n      name  = \"log_connections\"\n      value = \"on\"\n    }\n    database_flags {\n      name  = \"log_checkpoints\"\n      value = \"on\"\n    }\n  }\n\n}",
-        "type": "google_sql_database_instance"
-      },
-      "result": "FAIL",
-      "severity": "INFO",
-      "violation": {
-        "actual": null,
-        "attr_path": "",
-        "expected": "google_sql_database_instance.instance: label \"instance\" repeats the resource type suffix \u2014 use a descriptive name instead"
+        "expected": "google_sql_database_instance.this: settings.ip_configuration.ssl_mode must be one of [ENCRYPTED_ONLY TRUSTED_CLIENT_CERTIFICATE_REQUIRED], got true"
       }
     }
   ],
@@ -7414,8 +6826,8 @@
     "."
   ],
   "summary": {
-    "failed": 32,
-    "passed": 124,
-    "total": 156
+    "failed": 4,
+    "passed": 154,
+    "total": 158
   }
 }

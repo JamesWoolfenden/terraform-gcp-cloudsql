@@ -1,0 +1,37 @@
+id: HLD_GCP_309
+name: Cloud SQL instances with private IP must enable the private path for Google Cloud services
+principle: network-security
+severity: HIGH
+rationale: |
+  When a Cloud SQL instance has ipv4_enabled = false and relies on a private
+  VPC network, traffic to other Google Cloud APIs (e.g. Cloud Storage exports,
+  Cloud KMS for CMEK, Cloud Monitoring) still routes over the public internet
+  unless enable_private_path_for_google_cloud_services is set to true on the
+  ip_configuration block. This silently defeats the intent of removing the
+  instance from public reachability — the instance itself has no public IP,
+  but its outbound calls to Google APIs are not actually private.
+remediation: |
+  Set i see enable_private_path_for_google_cloud_services = true inside the
+  ip_configuration block, alongside private_network and ipv4_enabled = false.
+
+    resource "google_sql_database_instance" "example" {
+      name             = "example"
+      database_version = "POSTGRES_15"
+      region           = "us-central1"
+
+      settings {
+        tier = "db-f1-micro"
+        ip_configuration {
+          ipv4_enabled                                 = false
+          private_network                              = google_compute_network.example.id
+          enable_private_path_for_google_cloud_services = true
+        }
+      }
+    }
+resources:
+  google_sql_database_instance:
+    all:
+      - path: settings.ip_configuration.enable_private_path_for_google_cloud_services
+        not_null: true
+      - path: settings.ip_configuration.enable_private_path_for_google_cloud_services
+        equals: true

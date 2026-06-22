@@ -1,6 +1,4 @@
-network_name = "pike"
-name         = "pike"
-tier         = "db-custom-1-3840"
+name = "pike"
 database = [{
   name = "my-database"
   },

@@ -57,10 +57,13 @@ variable "instance" {
   }
 }
 
-variable "require_ssl" {
-  description = "Require SSL for all incoming connections (sets ssl_mode to ENCRYPTED_ONLY)."
-  type        = bool
-  default     = true
+variable "encryption_key_name" {
+  description = "Fully-qualified KMS key ID used to encrypt the Cloud SQL instance's disk."
+  type        = string
+  validation {
+    condition     = length(var.encryption_key_name) > 0
+    error_message = "encryption_key_name must be a non-empty KMS key ID."
+  }
 }
 
 variable "labels" {

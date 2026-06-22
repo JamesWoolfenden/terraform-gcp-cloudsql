@@ -1,24 +1,26 @@
-# holden:ignore:HLD_GCP_010 — ssl_mode resolves to ENCRYPTED_ONLY when require_ssl = true (the default); holden cannot evaluate the ternary
 resource "google_sql_database_instance" "this" {
-  #checkov:skip=CKV_GCP_6: ssl_mode is set to ENCRYPTED_ONLY when require_ssl = true (the default); checkov cannot evaluate the ternary statically
   #checkov:skip=CKV_GCP_79: database_version is caller-controlled via var.instance.database_version; callers must specify the latest version appropriate for their workload
+  #checkov:skip=CKV_GCP_6: ssl_mode is hardcoded to ENCRYPTED_ONLY (no opt-out); checkov only recognizes the legacy require_ssl boolean, not the modern ssl_mode attribute
   database_version    = var.instance.database_version
   name                = var.name
   region              = var.instance.region
   deletion_protection = true
+  encryption_key_name = var.encryption_key_name
 
   depends_on = [
     google_service_networking_connection.private_vpc_connection
   ]
 
   settings {
-    tier        = var.instance.tier
-    user_labels = var.labels
+    tier              = var.instance.tier
+    user_labels       = var.labels
+    availability_type = "REGIONAL"
 
     ip_configuration {
-      ipv4_enabled    = false
-      private_network = data.google_compute_network.private_network.self_link
-      ssl_mode        = var.require_ssl ? "ENCRYPTED_ONLY" : "ALLOW_UNENCRYPTED_AND_ENCRYPTED"
+      ipv4_enabled                                  = false
+      private_network                               = data.google_compute_network.private_network.self_link
+      enable_private_path_for_google_cloud_services = true
+      ssl_mode                                      = "ENCRYPTED_ONLY"
     }
     maintenance_window {
       day  = var.mw_day
@@ -46,6 +48,22 @@ resource "google_sql_database_instance" "this" {
     }
     database_flags {
       name  = "log_checkpoints"
+      value = "on"
+    }
+    database_flags {
+      name  = "log_duration"
+      value = "on"
+    }
+    database_flags {
+      name  = "log_hostname"
+      value = "on"
+    }
+    database_flags {
+      name  = "log_statement"
+      value = "ddl"
+    }
+    database_flags {
+      name  = "cloudsql.enable_pgaudit"
       value = "on"
     }
   }

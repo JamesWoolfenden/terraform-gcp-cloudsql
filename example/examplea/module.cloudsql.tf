@@ -1,15 +1,16 @@
 # holden:ignore:HLD_TF_026 — examples intentionally use ../../ to reference the local module root
 module "cloudsql" {
-  source       = "../../"
-  name         = var.name
-  network_name = module.network.vpc.name
-  database     = var.database
-  users        = var.users
-  depends_on   = [module.network]
+  source              = "../../"
+  name                = var.name
+  network_name        = module.network.vpc.name
+  database            = var.database
+  users               = var.users
+  encryption_key_name = google_kms_crypto_key.sql.id
+  depends_on          = [module.network]
 }
 
 module "network" {
-  source        = "git::https://github.com/jameswoolfenden/terraform-gcp-network.git?ref=b430e0423b285e465b62dc630f6515b378531acb"
+  source        = "git::https://github.com/jameswoolfenden/terraform-gcp-network.git?ref=048f2f7ee279518dc87aa862b6f2bb973fa00b85"
   name          = "examplec"
   ip_cidr_range = "10.128.0.0/16"
   secondary_ip_range = [{

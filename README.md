@@ -95,21 +95,21 @@ No modules.
 | Name | Description | Type | Default | Required |
 | ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_database"></a> [database](#input\_database) | Databases to create on the instance. | <pre>list(object({<br/>    name = string<br/>  }))</pre> | `[]` | no |
+| <a name="input_encryption_key_name"></a> [encryption\_key\_name](#input\_encryption\_key\_name) | Fully-qualified KMS key ID used to encrypt the Cloud SQL instance's disk. | `string` | n/a | yes |
 | <a name="input_instance"></a> [instance](#input\_instance) | Cloud SQL instance configuration. | <pre>object({<br/>    tier             = optional(string, "db-custom-1-3840")<br/>    database_version = optional(string, "POSTGRES_16")<br/>    region           = optional(string, "us-central1")<br/>  })</pre> | `{}` | no |
 | <a name="input_labels"></a> [labels](#input\_labels) | Labels to apply to all resources created by this module. | `map(string)` | `{}` | no |
 | <a name="input_mw_day"></a> [mw\_day](#input\_mw\_day) | Day of the week for the maintenance window (1 = Monday, 7 = Sunday). | `number` | `1` | no |
-| <a name="input_mw_hour"></a> [mw\_hour](#input\_mw\_hour) | Hour of the day (UTC) for the maintenance window (0â€“23). | `number` | `12` | no |
+| <a name="input_mw_hour"></a> [mw\_hour](#input\_mw\_hour) | Hour of the day (UTC) for the maintenance window (0–23). | `number` | `12` | no |
 | <a name="input_name"></a> [name](#input\_name) | The name of the Cloud SQL instance. | `string` | n/a | yes |
 | <a name="input_network_name"></a> [network\_name](#input\_network\_name) | The name of the VPC network to provision this instance into. | `string` | n/a | yes |
 | <a name="input_private_ip_prefix_length"></a> [private\_ip\_prefix\_length](#input\_private\_ip\_prefix\_length) | Prefix length for the private IP range reserved for VPC peering (e.g. 24 = 256 addresses, sufficient for Cloud SQL). | `number` | `24` | no |
-| <a name="input_require_ssl"></a> [require\_ssl](#input\_require\_ssl) | Require SSL for all incoming connections (sets ssl\_mode to ENCRYPTED\_ONLY). | `bool` | `true` | no |
-| <a name="input_users"></a> [users](#input\_users) | Users to create on the instance. Passwords are stored in Terraform state â€” prefer random\_password references rather than literal values. | <pre>list(object({<br/>    name     = string<br/>    password = string<br/>  }))</pre> | `[]` | no |
+| <a name="input_users"></a> [users](#input\_users) | Users to create on the instance. Passwords are stored in Terraform state — prefer random\_password references rather than literal values. | <pre>list(object({<br/>    name     = string<br/>    password = string<br/>  }))</pre> | `[]` | no |
 
 ## Outputs
 
 | Name | Description |
 | ---- | ----------- |
-| <a name="output_instance"></a> [instance](#output\_instance) | The Cloud SQL database instance (sensitive â€” contains connection details). |
+| <a name="output_instance"></a> [instance](#output\_instance) | The Cloud SQL database instance (sensitive — contains connection details). |
 | <a name="output_network"></a> [network](#output\_network) | The private VPC network data source used by the Cloud SQL instance. |
 | <a name="output_private_ip_address"></a> [private\_ip\_address](#output\_private\_ip\_address) | The reserved global internal IP address for the VPC peering range. |
 | <a name="output_vpc_connection"></a> [vpc\_connection](#output\_vpc\_connection) | The private VPC peering connection for the Cloud SQL private services access. |

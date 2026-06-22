@@ -1,0 +1,21 @@
+{
+  "findings": [
+    {
+      "confidence": "high",
+      "explanation": "examplea.auto.tfvars hardcodes password = \"totallyvisible\" for user \"jimbo\" and is checked into version control. Holden's resource-attribute DSL scans .tf resource blocks, not .tfvars literal values flowing through variables, so no deterministic rule can see this \u2014 it's invisible to HLD_GCP_246 (which only checks that google_sql_user.password is set, not whether the value is a hardcoded literal vs. a reference like random_password.x.result). Verified independently: the module's `users` variable is marked sensitive, so Terraform masks the value in `plan`/`apply` output \u2014 but that protection is irrelevant once the literal is already readable in the repo. Anyone with read access to this repo (or its git history, even after rotation) has the credential.",
+      "file": "example/examplea/examplea.auto.tfvars",
+      "id": "HOLDEN_AI_001",
+      "line": 11,
+      "principle": "data-protection",
+      "related_resources": [
+        "google_sql_user.this",
+        "example/examplea/variables.tf:variable.users"
+      ],
+      "remediation": "Replace the literal with a generated secret, e.g. add a `random_password.jimbo` resource and reference `random_password.jimbo.result` in examplea.auto.tfvars-equivalent wiring (tfvars can't reference resources directly \u2014 move the user block into module.cloudsql.tf using a `random_password` resource instead of an .auto.tfvars literal). Rotate the live 'totallyvisible' password if this example was ever applied against a real project.",
+      "resource": "module.cloudsql.users",
+      "severity": "HIGH",
+      "title": "Literal plaintext database password committed to example tfvars"
+    }
+  ],
+  "suggested_policies": []
+}

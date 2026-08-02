@@ -1,0 +1,41 @@
+{
+  "findings": [
+    {
+      "confidence": "high",
+      "explanation": "The module root has no terraform { required_providers { ... } } block anywhere (main.tf is a placeholder comment). Only the example under example/examplea pins an exact google provider version (7.30.0). Consumers of this module have no signal about which provider versions it was built and tested against, so a caller could resolve an incompatible (too old or too new) google provider version and get plan/apply behaviour that differs from what this module was validated with.",
+      "file": "main.tf",
+      "first_seen": "2026-08-02",
+      "fix": "terraform {\n  required_providers {\n    google = {\n      source  = \"hashicorp/google\"\n      version = \">= 7.0.0\"\n    }\n  }\n  required_version = \">= 1.5.0\"\n}\n",
+      "fixable": true,
+      "id": "HOLDEN_BP_001",
+      "last_seen": "2026-08-02",
+      "line": 1,
+      "principle": "repeatability",
+      "remediation": "Add a terraform.tf at the module root declaring a version floor (a range, not an exact pin, since exact pins in a reusable module force that exact version on every consumer):\n\nterraform {\n  required_providers {\n    google = {\n      source  = \"hashicorp/google\"\n      version = \">= 7.0.0\"\n    }\n  }\n  required_version = \">= 1.5.0\"\n}",
+      "resource": "module root",
+      "severity": "LOW",
+      "status": "suppressed",
+      "title": "Root module declares no required_providers / required_version constraint"
+    },
+    {
+      "confidence": "medium",
+      "explanation": "mw_day defaults to 1 (Monday) and mw_hour defaults to 12 (noon UTC). Noon UTC overlaps business hours across most of Europe and the UK, and even a REGIONAL (HA) instance takes a brief failover hit during maintenance. Callers who don't override these defaults get maintenance scheduled during a plausible peak-traffic window rather than an off-hours slot.",
+      "file": "variables.tf",
+      "first_seen": "2026-08-02",
+      "fix": "variable \"mw_day\" {\n  description = \"Day of the week for the maintenance window (1 = Monday, 7 = Sunday).\"\n  type        = number\n  default     = 7\n  ...\n}\n\nvariable \"mw_hour\" {\n  description = \"Hour of the day (UTC) for the maintenance window (0-23).\"\n  type        = number\n  default     = 6\n  ...\n}",
+      "fixable": true,
+      "id": "HOLDEN_BP_002",
+      "last_seen": "2026-08-02",
+      "line": 90,
+      "principle": "reliability",
+      "remediation": "Default to a low-traffic slot, e.g. Sunday early morning UTC: mw_day = 7, mw_hour = 6. Callers in a specific timezone can still override both.",
+      "resource": "var.mw_day / var.mw_hour (consumed by google_sql_database_instance.this.settings.maintenance_window)",
+      "severity": "LOW",
+      "status": "fixed",
+      "title": "Default maintenance window falls in business hours (Monday 12:00 UTC)"
+    }
+  ],
+  "scan_date": "2026-08-02T00:00:00Z",
+  "scan_path": ".",
+  "suggested_policies": []
+}

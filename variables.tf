@@ -60,6 +60,7 @@ variable "instance" {
 variable "encryption_key_name" {
   description = "Fully-qualified KMS key ID used to encrypt the Cloud SQL instance's disk."
   type        = string
+  sensitive   = true
   validation {
     condition     = length(var.encryption_key_name) > 0
     error_message = "encryption_key_name must be a non-empty KMS key ID."
@@ -79,7 +80,7 @@ variable "labels" {
 variable "mw_day" {
   description = "Day of the week for the maintenance window (1 = Monday, 7 = Sunday)."
   type        = number
-  default     = 1
+  default     = 7
   validation {
     condition     = var.mw_day >= 1 && var.mw_day <= 7
     error_message = "mw_day must be between 1 (Monday) and 7 (Sunday)."
@@ -89,7 +90,7 @@ variable "mw_day" {
 variable "mw_hour" {
   description = "Hour of the day (UTC) for the maintenance window (0–23)."
   type        = number
-  default     = 12
+  default     = 6
   validation {
     condition     = var.mw_hour >= 0 && var.mw_hour <= 23
     error_message = "mw_hour must be between 0 and 23."
@@ -103,5 +104,14 @@ variable "private_ip_prefix_length" {
   validation {
     condition     = var.private_ip_prefix_length >= 16 && var.private_ip_prefix_length <= 29
     error_message = "private_ip_prefix_length must be between 16 and 29."
+  }
+}
+
+variable "notification_channels" {
+  description = "Monitoring notification channel IDs to alert when the Cloud SQL instance's CPU utilization is critical."
+  type        = list(string)
+  validation {
+    condition     = length(var.notification_channels) > 0 && alltrue([for c in var.notification_channels : length(c) > 0])
+    error_message = "notification_channels must contain at least one non-empty channel ID."
   }
 }

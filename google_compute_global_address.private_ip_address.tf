@@ -4,4 +4,8 @@ resource "google_compute_global_address" "private_ip_address" {
   address_type  = "INTERNAL"
   prefix_length = var.private_ip_prefix_length
   network       = data.google_compute_network.private_network.self_link
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }

@@ -12,9 +12,10 @@ resource "google_sql_database_instance" "this" {
   ]
 
   settings {
-    tier              = var.instance.tier
-    user_labels       = var.labels
-    availability_type = "REGIONAL"
+    tier                  = var.instance.tier
+    user_labels           = var.labels
+    availability_type     = "REGIONAL"
+    connector_enforcement = "REQUIRED"
 
     ip_configuration {
       ipv4_enabled                                  = false
@@ -66,6 +67,34 @@ resource "google_sql_database_instance" "this" {
       name  = "cloudsql.enable_pgaudit"
       value = "on"
     }
+    password_validation_policy {
+      enable_password_policy      = true
+      min_length                  = 12
+      complexity                  = "COMPLEXITY_DEFAULT"
+      disallow_username_substring = true
+    }
   }
+}
 
+data "google_project" "this" {}
+
+resource "google_monitoring_alert_policy" "this" {
+  display_name          = "${var.name}-alert-policy"
+  combiner              = "OR"
+  notification_channels = var.notification_channels
+
+  conditions {
+    display_name = "Cloud SQL CPU utilization"
+
+    condition_threshold {
+      filter          = "resource.type=\"cloudsql_database\" AND resource.label.database_id=\"${data.google_project.this.project_id}:${google_sql_database_instance.this.name}\" AND metric.type=\"cloudsql.googleapis.com/database/cpu/utilization\""
+      comparison      = "COMPARISON_GT"
+      threshold_value = 0.9
+      duration        = "60s"
+
+      trigger {
+        count = 1
+      }
+    }
+  }
 }

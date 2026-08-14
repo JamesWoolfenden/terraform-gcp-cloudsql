@@ -15,7 +15,7 @@ module "cloudsql" {
   users                 = var.users
   encryption_key_name   = google_kms_crypto_key.sql.id
   notification_channels = [google_monitoring_notification_channel.email.name]
-  depends_on            = [module.network]
+  depends_on            = [module.network, google_kms_crypto_key_iam_member.cloudsql_sa]
 }
 
 module "network" {

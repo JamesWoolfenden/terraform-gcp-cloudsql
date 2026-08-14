@@ -6,6 +6,8 @@
 # Module directory
 .terraform/
 .terraform
+/.terraform.lock.hcl
+.pike/.terraform.lock.hcl
 .plugins
 __pycache__/
 .vscode/

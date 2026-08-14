@@ -6,8 +6,7 @@ resource "google_sql_database_instance" "this" {
   encryption_key_name = var.encryption_key_name
 
   depends_on = [
-    google_service_networking_connection.private_vpc_connection,
-    google_kms_crypto_key_iam_member.this
+    google_service_networking_connection.private_vpc_connection
   ]
 
   settings {
@@ -75,8 +74,6 @@ resource "google_sql_database_instance" "this" {
   }
 }
 
-data "google_project" "this" {}
-
 resource "google_monitoring_alert_policy" "this" {
   display_name          = "${var.name}-alert-policy"
   combiner              = "OR"
@@ -86,7 +83,7 @@ resource "google_monitoring_alert_policy" "this" {
     display_name = "Cloud SQL CPU utilization"
 
     condition_threshold {
-      filter          = "resource.type=\"cloudsql_database\" AND resource.label.database_id=\"${data.google_project.this.project_id}:${google_sql_database_instance.this.name}\" AND metric.type=\"cloudsql.googleapis.com/database/cpu/utilization\""
+      filter          = "resource.type=\"cloudsql_database\" AND resource.label.database_id=\"${google_sql_database_instance.this.project}:${google_sql_database_instance.this.name}\" AND metric.type=\"cloudsql.googleapis.com/database/cpu/utilization\""
       comparison      = "COMPARISON_GT"
       threshold_value = 0.9
       duration        = "60s"

@@ -89,7 +89,6 @@ No modules.
 | [google_sql_database_instance.this](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database_instance) | resource |
 | [google_sql_user.this](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_user) | resource |
 | [google_compute_network.private_network](https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/compute_network) | data source |
-| [google_project.this](https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/project) | data source |
 
 ## Inputs
 
@@ -177,7 +176,6 @@ resource "google_project_iam_custom_role" "terraform_pike_plan" {
     "compute.globalOperations.get",
     "compute.networks.get",
     "monitoring.alertPolicies.get",
-    "resourcemanager.organizations.get",
     "resourcemanager.projects.get",
     "servicenetworking.services.get"
   ]

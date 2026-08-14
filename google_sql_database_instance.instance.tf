@@ -1,6 +1,4 @@
 resource "google_sql_database_instance" "this" {
-  #checkov:skip=CKV_GCP_79: database_version is caller-controlled via var.instance.database_version; callers must specify the latest version appropriate for their workload
-  #checkov:skip=CKV_GCP_6: ssl_mode is hardcoded to ENCRYPTED_ONLY (no opt-out); checkov only recognizes the legacy require_ssl boolean, not the modern ssl_mode attribute
   database_version    = var.instance.database_version
   name                = var.name
   region              = var.instance.region

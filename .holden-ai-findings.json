@@ -2,38 +2,16 @@
   "findings": [
     {
       "confidence": "high",
-      "explanation": "google_sql_database_instance.this sets encryption_key_name (CMEK). For Cloud SQL to actually use a customer-managed key, GCP requires the Cloud SQL service agent to hold roles/cloudkms.cryptoKeyEncrypterDecrypter on that exact key. Fixed by adding data.google_project.this and google_kms_crypto_key_iam_member.cloudsql_sa in example/examplea/google_kms_key.sql.tf. Also promoted to a real deterministic policy (HLD_GCP_453) in the holden engine itself, including a core engine fix (followModuleVariable in resolveEdgeTarget) so the check resolves correctly across the module boundary.",
-      "file": "example/examplea/google_kms_key.sql.tf",
-      "first_seen": "2026-08-02",
-      "fix": null,
-      "fixable": true,
-      "id": "HOLDEN_AI_001",
-      "last_seen": "2026-08-02",
-      "line": 1,
-      "principle": "encryption",
-      "related_resources": [
-        "google_sql_database_instance.this (google_sql_database_instance.instance.tf:8, encryption_key_name = var.encryption_key_name)",
-        "example/examplea/module.cloudsql.tf:16 (encryption_key_name = google_kms_crypto_key.sql.id)"
-      ],
-      "remediation": "Already applied.",
-      "resource": "google_kms_crypto_key.sql",
-      "severity": "HIGH",
-      "status": "fixed",
-      "suppression_reason": null,
-      "title": "CMEK key referenced by encryption_key_name has no companion IAM binding granting the Cloud SQL service agent decrypt access"
-    },
-    {
-      "confidence": "high",
       "explanation": "The settings block repeats the exact same two-line { name = ..., value = ... } shape eight times for log_lock_waits, log_disconnections, log_connections, log_checkpoints, log_duration, log_hostname, log_statement, and cloudsql.enable_pgaudit. A rules engine scores single-resource complexity but has no similarity pass across sibling blocks within one resource, so it can't flag that a dynamic block over a local map/list would collapse this to one place, making it trivial to add or audit a flag later.",
       "file": "google_sql_database_instance.instance.tf",
       "first_seen": "2026-08-02",
       "fixable": false,
       "id": "HOLDEN_AI_002",
-      "last_seen": "2026-08-02",
-      "line": 38,
+      "last_seen": "2026-08-14",
+      "line": 36,
       "principle": "maintainability",
       "related_resources": [
-        "google_sql_database_instance.instance.tf:38-69 (8 verbatim-shaped database_flags blocks)"
+        "google_sql_database_instance.instance.tf:36-67 (8 verbatim-shaped database_flags blocks)"
       ],
       "remediation": "Replace the 8 static blocks with a local map and a dynamic block, e.g.:\n\nlocals {\n  db_flags = {\n    log_lock_waits          = \"on\"\n    log_disconnections      = \"on\"\n    log_connections         = \"on\"\n    log_checkpoints         = \"on\"\n    log_duration            = \"on\"\n    log_hostname            = \"on\"\n    log_statement           = \"ddl\"\n    \"cloudsql.enable_pgaudit\" = \"on\"\n  }\n}\n\n# inside settings {}\ndynamic \"database_flags\" {\n  for_each = local.db_flags\n  content {\n    name  = database_flags.key\n    value = database_flags.value\n  }\n}",
       "resource": "google_sql_database_instance.this",
@@ -45,27 +23,27 @@
     },
     {
       "confidence": "high",
-      "explanation": "google_sql_database_instance.instance.tf now declares google_monitoring_alert_policy.this, added in this same review session to close the HLD_GCP_337 gap. The .pike/pike.generated_policy.tf custom role (README's documented 'Role and Permissions' least-privilege grant for whoever applies this module) lists only cloudsql.*, compute.*, servicenetworking.*, and resourcemanager.projects.get \u2014 no monitoring.* permission at all. A rules engine can't catch this: it requires knowing that a specific resource TYPE in one file implies a specific IAM permission STRING that should appear in an unrelated custom-role resource in another file, then confirming it's actually absent. Anyone who has locked their CI/Terraform service account down to exactly this generated role (the entire point of generating it) will get a permission-denied error applying this module now, not a security exposure, but a real functional break introduced by this session's own alert-policy fix.",
-      "file": ".pike/pike.generated_policy.tf",
-      "first_seen": "2026-08-02",
-      "fix": "  \"monitoring.alertPolicies.create\",\n  \"monitoring.alertPolicies.delete\",\n  \"monitoring.alertPolicies.get\",\n  \"monitoring.alertPolicies.list\",\n  \"monitoring.alertPolicies.update\",\n  \"monitoring.notificationChannels.get\",\n",
+      "explanation": "The Cloud SQL service agent (service-PROJECT_NUMBER@gcp-sa-cloud-sql.iam.gserviceaccount.com) is not guaranteed to exist just because the Cloud SQL Admin API is enabled or referenced \u2014 Google's own CMEK setup docs treat creating it as a distinct, explicit step (gcloud beta services identity create / the google_project_service_identity resource), not something implied by using the API. Building the member string by hand assumes the agent already exists from some prior, out-of-band action. On a project where Cloud SQL hasn't been used before (a fresh project, or one where this is the first Cloud SQL resource ever provisioned), granting an IAM role to a service account that doesn't exist yet fails apply \u2014 a rules engine can't catch this because it requires knowing GCP's service-agent lifecycle semantics, not anything visible in the attribute graph.",
+      "file": "example/examplea/google_kms_key.sql.tf",
+      "first_seen": "2026-08-14",
+      "fix": "resource \"google_project_service_identity\" \"cloudsql_sa\" {\n  provider = google-beta\n  project  = data.google_project.this.project_id\n  service  = \"sqladmin.googleapis.com\"\n}\n",
       "fixable": true,
-      "id": "HOLDEN_AI_003",
-      "last_seen": "2026-08-02",
-      "line": 7,
-      "principle": "identity-and-access",
+      "id": "HOLDEN_AI_004",
+      "last_seen": "2026-08-14",
+      "line": 13,
+      "principle": "reliability",
       "related_resources": [
-        "google_sql_database_instance.instance.tf:81 (google_monitoring_alert_policy.this)"
+        "example/examplea/google_kms_key.sql.tf:16 (member = \"serviceAccount:service-${data.google_project.this.number}@gcp-sa-cloud-sql.iam.gserviceaccount.com\")"
       ],
-      "remediation": "Add the Monitoring Alert Policy CRUD permissions to the role (normally this file is regenerated by the pike pre-commit hook from actual resource usage \u2014 running that regenerates it correctly; the permissions below are the minimal manual equivalent):\n\n  \"monitoring.alertPolicies.create\",\n  \"monitoring.alertPolicies.delete\",\n  \"monitoring.alertPolicies.get\",\n  \"monitoring.alertPolicies.list\",\n  \"monitoring.alertPolicies.update\",\n  \"monitoring.notificationChannels.get\"",
-      "resource": "google_project_iam_custom_role.terraform_pike",
+      "remediation": "Replace the hand-built member string with a google_project_service_identity resource, which creates the agent if it doesn't exist yet (idempotent if it does) and exposes its real email:\n\nresource \"google_project_service_identity\" \"cloudsql_sa\" {\n  provider = google-beta\n  project  = data.google_project.this.project_id\n  service  = \"sqladmin.googleapis.com\"\n}\n\nresource \"google_kms_crypto_key_iam_member\" \"cloudsql_sa\" {\n  crypto_key_id = google_kms_crypto_key.sql.id\n  role          = \"roles/cloudkms.cryptoKeyEncrypterDecrypter\"\n  member        = \"serviceAccount:${google_project_service_identity.cloudsql_sa.email}\"\n}\n\nRequires adding a google-beta provider entry to example/examplea/terraform.tf's required_providers (implementations, not the module itself, own required_providers here).\n\nSeparately: even with the depends_on ordering fixed earlier this session, GCP IAM grants can take up to ~60s to fully propagate \u2014 the first apply of a brand-new key + grant + instance chain can still occasionally hit a transient permission-denied on the instance creation call even though the grant object itself was created successfully. If that's observed in practice, a short time_sleep between the grant and module.cloudsql (or a documented retry-on-fail note) is the standard workaround; not proposed as a mechanical fix here since it's a timing tradeoff, not a correctness bug.",
+      "resource": "google_kms_crypto_key_iam_member.cloudsql_sa",
       "severity": "MEDIUM",
       "status": "fixed",
       "suppression_reason": null,
-      "title": "Pike-generated least-privilege Terraform role is missing Monitoring API permissions for the alert policy this module now creates"
+      "title": "CMEK IAM grant targets the Cloud SQL service agent by string interpolation, with no resource that guarantees the agent exists"
     }
   ],
-  "scan_date": "2026-08-02T15:35:00Z",
+  "scan_date": "2026-08-14T14:00:00Z",
   "scan_path": ".",
   "suggested_policies": [],
   "suggested_suppressions": []

@@ -173,7 +173,6 @@ resource "google_project_iam_custom_role" "terraform_pike_plan" {
     "cloudsql.instances.get",
     "cloudsql.users.list",
     "compute.globalAddresses.get",
-    "compute.globalOperations.get",
     "compute.networks.get",
     "monitoring.alertPolicies.get",
     "resourcemanager.projects.get",
